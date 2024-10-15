@@ -6,7 +6,7 @@ const CreatePost = () => {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
-    author: ''
+    date: ''
   });
 
   const [error, setError] = useState('');
@@ -23,7 +23,7 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.title || !formData.content || !formData.author) {
+    if (!formData.title || !formData.content || !formData.date) {
       setError('Please fill out all fields.');
       return;
     }
@@ -64,12 +64,12 @@ const CreatePost = () => {
           />
         </div>
         <div>
-          <label htmlFor="author">Author:</label>
+          <label htmlFor="date">Date:</label>
           <input
-            type="text"
-            id="author"
-            name="author"
-            value={formData.author}
+            type="date"
+            id="date"
+            name="date"
+            value={formData.date}
             onChange={handleChange}
           />
         </div>
