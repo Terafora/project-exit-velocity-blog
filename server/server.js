@@ -16,10 +16,8 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 
 // Routes
 
-// Test route
-app.get('/', (req, res) => {
-  res.send('Everything is working!');
-});
+const postRoutes = require('./routes/postRoutes');
+app.use('/api/posts', postRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
