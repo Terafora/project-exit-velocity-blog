@@ -8,12 +8,14 @@ import './App.scss';
 function App() {
   return (
     <Router>
-      <div>
+      <div className="app-container">
         <Navbar />  
-        <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/create" element={<CreatePost />} />
-        </Routes>
+        <div className="content-wrapper">
+          <Routes>
+            <Route path="/" element={<PostList />} />
+            <Route path="/create" element={<CreatePost />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

@@ -1,29 +1,152 @@
 $nav-background-color: #20B2AA;
 
+/* Wrapper for navbar and shadow */
+.navbar-wrapper {
+    position: relative;
+    height: 100vh;
+    width: 250px;
+}
+
+/* Shadow div */
+.navbar-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: translate(8px, 0);
+    z-index: 999;
+    overflow: hidden;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        95% 2.5%, 
+        100% 5%, 
+        95% 7.5%, 
+        100% 10%, 
+        95% 12.5%, 
+        100% 15%, 
+        95% 17.5%,
+        100% 20%,
+        95% 22.5%, 
+        100% 25%, 
+        95% 27.5%, 
+        100% 30%, 
+        95% 32.5%, 
+        100% 35%, 
+        95% 37.5%, 
+        100% 40%, 
+        95% 42.5%, 
+        100% 45%, 
+        95% 47.5%, 
+        100% 50%, 
+        95% 52.5%, 
+        100% 55%, 
+        95% 57.5%, 
+        100% 60%, 
+        95% 62.5%, 
+        100% 65%, 
+        95% 67.5%, 
+        100% 70%, 
+        95% 72.5%, 
+        100% 75%, 
+        95% 77.5%, 
+        100% 80%, 
+        95% 82.5%, 
+        100% 85%, 
+        95% 87.5%, 
+        100% 90%, 
+        95% 92.5%, 
+        100% 95%, 
+        95% 97.5%, 
+        100% 100%,
+        0 100%
+    );
+}
+
+/* Actual Navbar */
 .navbar {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    justify-content: space-between;
+    position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
     width: 250px;
     background-color: $nav-background-color;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        95% 2.5%, 
+        100% 5%, 
+        95% 7.5%, 
+        100% 10%, 
+        95% 12.5%,
+        100% 15%, 
+        95% 17.5%,
+        100% 20%,
+        95% 22.5%, 
+        100% 25%, 
+        95% 27.5%, 
+        100% 30%, 
+        95% 32.5%, 
+        100% 35%, 
+        95% 37.5%, 
+        100% 40%, 
+        95% 42.5%, 
+        100% 45%, 
+        95% 47.5%, 
+        100% 50%, 
+        95% 52.5%, 
+        100% 55%, 
+        95% 57.5%, 
+        100% 60%, 
+        95% 62.5%, 
+        100% 65%, 
+        95% 67.5%, 
+        100% 70%, 
+        95% 72.5%, 
+        100% 75%, 
+        95% 77.5%, 
+        100% 80%, 
+        95% 82.5%, 
+        100% 85%, 
+        95% 87.5%, 
+        100% 90%, 
+        95% 92.5%, 
+        100% 95%, 
+        95% 97.5%, 
+        100% 100%,
+        0 100%
+    );
 
     .navbar-list {
         list-style-type: none;
         padding: 0;
         margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 90%;
 
         .navbar-item {
-            margin: 10px 0;
+            margin: 0;
+            padding: 15px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
             a {
                 color: #fff;
                 text-decoration: none;
                 font-size: 18px;
                 font-family: 'Maswen', sans-serif;
+                text-align: left;
 
                 &:hover {
                     color: #ddd;
@@ -32,6 +155,7 @@ $nav-background-color: #20B2AA;
 
             &.dropdown {
                 position: relative;
+                align-self: flex-start;
 
                 .dropdown-toggle {
                     cursor: pointer;
@@ -40,8 +164,8 @@ $nav-background-color: #20B2AA;
                 .dropdown-menu {
                     display: none;
                     position: absolute;
-                    left: 25%;
-                    top: 1rem;
+                    left: 100%;
+                    top: 0;
                     background-color: $nav-background-color;
                     padding: 10px;
                     list-style-type: none;
