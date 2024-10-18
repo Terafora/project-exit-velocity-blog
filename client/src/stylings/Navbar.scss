@@ -31,7 +31,6 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
     height: 100vh;
     width: 250px;
     background-color: rgba(0, 0, 0, 0.5);
-    transform: translate(8px, 0);
     z-index: 999;
     overflow: hidden;
     clip-path: polygon(
@@ -170,7 +169,7 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
     justify-content: flex-start;
     align-items: center;
 
-    a {
+    a, button {
         color: #fff;
         text-decoration: none;
         font-size: 18px;
@@ -192,10 +191,11 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
         .dropdown-menu {
             display: none;
             position: absolute;
-            left: 50%;
+            left: 50%; 
             top: 0;
             background: $nav-linear-gradient;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
             padding: 10px;
             list-style-type: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -203,9 +203,15 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
             .dropdown-item {
                 margin: 5px 0;
 
-                a {
+                button {
+                    background: none;
+                    border: none;
                     color: #fff;
-                    text-decoration: none;
+                    font-size: 16px;
+                    font-family: 'Maswen', sans-serif;
+                    cursor: pointer;
+                    text-align: left;
+                    padding: 5px 15px;
 
                     &:hover {
                         color: #ddd;
@@ -216,7 +222,19 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
 
         &:hover .dropdown-menu {
             display: block;
+            animation: fadeIn 0.2s ease-in-out;
         }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -230,6 +248,18 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
 
         .navbar-item {
             margin: 0 10px;
+        }
+
+        .dropdown-menu {
+            position: static; /* Align properly on mobile */
+            display: block; /* Keep visible on mobile */
+        }
+
+        .dropdown-item {
+            button {
+                padding: 8px 10px; /* Adjust for smaller screens */
+                font-size: 14px; /* Adjust font size */
+            }
         }
     }
 }
