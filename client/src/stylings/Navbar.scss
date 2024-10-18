@@ -1,6 +1,5 @@
 $nav-background-color: #20B2AA;
-$nav-linear-gradient: linear-gradient(270deg, #20B2AA, #117F7C, #0B5956);
-
+$nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
 
 * {
     box-sizing: border-box;
@@ -31,7 +30,7 @@ $nav-linear-gradient: linear-gradient(270deg, #20B2AA, #117F7C, #0B5956);
     left: 8px;
     height: 100vh;
     width: 250px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     transform: translate(8px, 0);
     z-index: 999;
     overflow: hidden;
@@ -87,7 +86,7 @@ $nav-linear-gradient: linear-gradient(270deg, #20B2AA, #117F7C, #0B5956);
     top: -99.4vh;
 }
 
-/* Actual navbar (still animating) */
+/* Actual navbar with animated gradient */
 .navbar {
     position: absolute;
     top: 0;
@@ -97,6 +96,7 @@ $nav-linear-gradient: linear-gradient(270deg, #20B2AA, #117F7C, #0B5956);
     width: 250px;
     background: $nav-linear-gradient;
     z-index: 1000;
+    animation: scroll 10s linear infinite;
     clip-path: polygon(
         0 0,
         100% 0,
@@ -142,8 +142,6 @@ $nav-linear-gradient: linear-gradient(270deg, #20B2AA, #117F7C, #0B5956);
         100% 100%,
         0 100%
     );
-
-    animation: scroll 10s linear infinite;
 }
 
 .navbar-two {
@@ -161,7 +159,7 @@ $nav-linear-gradient: linear-gradient(270deg, #20B2AA, #117F7C, #0B5956);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    z-index: 1001;
+    z-index: 1002; /* Above both the texture and animated navbar */
     padding: 20px;
 }
 
