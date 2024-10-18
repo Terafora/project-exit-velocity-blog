@@ -1,30 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../stylings/Navbar.scss';
 
-const Navbar = () => {
+const Navbar = ({ changeLanguage }) => {
+    const { t } = useTranslation(); // Get the translation function
+
     return (
         <div className="navbar-wrapper">
-            {/* First Shadow div */}
             <div className="navbar-shadow"></div>
             <div className="navbar-shadow navbar-shadow-two"></div>
 
-            {/* Actual navbar (moving, but without items) */}
             <nav className="navbar"></nav>
             <div className="navbar navbar-two"></div>
-            {/* Navbar items moved outside the navbar */}
-            <ul className="navbar-list">
-                <li className="navbar-item"><a href="#home">Home</a></li>
-                <li className="navbar-item"><a href="#about">About</a></li>
-                <li className="navbar-item"><a href="#blog">Blog</a></li>
-                <li className="navbar-item"><a href="#contact">Contact</a></li>
 
-                {/* Dropdown Menu */}
+            <ul className="navbar-list">
+                <li className="navbar-item"><Link to="/">{t('home')}</Link></li>
+                <li className="navbar-item"><Link to="/about">{t('about')}</Link></li>
+                <li className="navbar-item"><Link to="/blog">{t('blog')}</Link></li>
+                <li className="navbar-item"><Link to="/contact">{t('contact')}</Link></li>
+
+                {/* Language Selector */}
                 <li className="navbar-item dropdown">
-                    <a href="#languages" className="dropdown-toggle">Languages</a>
+                    <a href="#" className="dropdown-toggle">{t('language')}</a>
                     <ul className="dropdown-menu">
-                        <li className="dropdown-item"><a href="#english">English</a></li>
-                        <li className="dropdown-item"><a href="#french">French</a></li>
-                        <li className="dropdown-item"><a href="#japanese">Japanese</a></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('en')}>English</button></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('fr')}>French</button></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('jp')}>Japanese</button></li>
                     </ul>
                 </li>
             </ul>
