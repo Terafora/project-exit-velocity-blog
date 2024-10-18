@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import '../stylings/Navbar.scss';
 
 const Navbar = ({ changeLanguage }) => {
-    const { t } = useTranslation(); // Get the translation function
+    const { t } = useTranslation(); 
 
     return (
         <div className="navbar-wrapper">
