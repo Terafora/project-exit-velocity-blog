@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../stylings/Navbar.scss';
 
-const Navbar = ({ changeLanguage }) => {
-    const { t } = useTranslation(); 
+const Navbar = ({ changeLanguage, updateInfoBarText }) => {
+    const { t, i18n } = useTranslation(); 
     const location = useLocation();
-
-    // Define colors for each route
     const routeColors = {
         '/': '#20B2AA', // Home page color
         '/about': '#FFD700', // About page color
@@ -15,8 +13,22 @@ const Navbar = ({ changeLanguage }) => {
         '/contact': '#1e90ff', // Contact page color
     };
 
+    // Define i18n translation keys for each route
+    const routeTextKeys = {
+        '/': 'infobar.home',
+        '/about': 'infobar.about',
+        '/blog': 'infobar.blog',
+        '/contact': 'infobar.contact',
+    };
+
     // Set navbar background color based on the current path
     const navbarColor = routeColors[location.pathname] || '#20B2AA';
+
+    useEffect(() => {
+        const newTextKey = routeTextKeys[location.pathname] || 'infobar.default';
+        const newText = t(newTextKey);
+        updateInfoBarText(newText);
+    }, [location.pathname, i18n.language, t, updateInfoBarText]); 
 
     return (
         <div className="navbar-wrapper">

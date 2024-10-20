@@ -1,12 +1,11 @@
-// InfoBar.js
 import React from 'react';
 import '../stylings/InfoBar.scss';
 
-const InfoBar = () => {
+const InfoBar = ({ text }) => { 
     return (
         <div className="info-bar">
             <div className="scrolling-text">
-                Welcome to the site! Check out our latest blog posts and tutorials.
+                {text}
             </div>
         </div>
     );

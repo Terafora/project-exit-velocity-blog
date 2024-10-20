@@ -3,5 +3,12 @@
     "about": "À propos",
     "contact": "Contact",
     "blog": "Blog",
-    "language": "Langues"
+    "language": "Langues",
+    "infobar": {
+        "home": "Bienvenue sur le site ! Découvrez nos derniers articles de blog et tutoriels.",
+        "about": "En savoir plus sur nous et notre mission.",
+        "blog": "Consultez les derniers articles de blog !",
+        "contact": "Contactez-nous pour plus d'informations.",
+        "default": "Bienvenue sur le site ! Découvrez nos derniers articles de blog et tutoriels."
+  }
 }

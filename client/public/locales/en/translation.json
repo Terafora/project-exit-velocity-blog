@@ -3,6 +3,13 @@
     "about": "About",
     "contact": "Contact",
     "blog": "Blog",
-    "language": "Languages"
+    "language": "Languages",
+    "infobar": {
+    "home": "Welcome to the site! Check out our latest blog posts and tutorials.",
+    "about": "Learn more about us and our mission.",
+    "blog": "Check out the latest blog posts!",
+    "contact": "Get in touch with us for more info.",
+    "default": "Welcome to the site! Check out our latest blog posts and tutorials."
+  }
 }
   
