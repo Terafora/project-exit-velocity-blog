@@ -1,5 +1,5 @@
 $nav-background-color: #20B2AA;
-$nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
+$sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 12.5%, 100% 15%, 95% 17.5%, 100% 20%, 95% 22.5%, 100% 25%, 95% 27.5%, 100% 30%, 95% 32.5%, 100% 35%, 95% 37.5%, 100% 40%, 95% 42.5%, 100% 45%, 95% 47.5%, 100% 50%, 95% 52.5%, 100% 55%, 95% 57.5%, 100% 60%, 95% 62.5%, 100% 65%, 95% 67.5%, 100% 70%, 95% 72.5%, 100% 75%, 95% 77.5%, 100% 80%, 95% 82.5%, 100% 85%, 95% 87.5%, 100% 90%, 95% 92.5%, 100% 95%, 95% 97.5%, 100% 100%, 0 100%);
 
 * {
     box-sizing: border-box;
@@ -30,54 +30,10 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
     left: 8px;
     height: 100vh;
     width: 250px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.9);
     z-index: 999;
     overflow: hidden;
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        95% 2.5%,
-        100% 5%,
-        95% 7.5%,
-        100% 10%,
-        95% 12.5%,
-        100% 15%,
-        95% 17.5%,
-        100% 20%,
-        95% 22.5%,
-        100% 25%,
-        95% 27.5%,
-        100% 30%,
-        95% 32.5%,
-        100% 35%,
-        95% 37.5%,
-        100% 40%,
-        95% 42.5%,
-        100% 45%,
-        95% 47.5%,
-        100% 50%,
-        95% 52.5%,
-        100% 55%,
-        95% 57.5%,
-        100% 60%,
-        95% 62.5%,
-        100% 65%,
-        95% 67.5%,
-        100% 70%,
-        95% 72.5%,
-        100% 75%,
-        95% 77.5%,
-        100% 80%,
-        95% 82.5%,
-        100% 85%,
-        95% 87.5%,
-        100% 90%,
-        95% 92.5%,
-        100% 95%,
-        95% 97.5%,
-        100% 100%,
-        0 100%
-    );
+    clip-path: $sawtooth-path;
     animation: scroll 10s linear infinite;
 }
 
@@ -93,54 +49,10 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
     min-height: 100vh;
     max-height: 100vh;
     width: 250px;
-    background: $nav-linear-gradient;
+    background: $nav-background-color;
     z-index: 1000;
     animation: scroll 10s linear infinite;
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        95% 2.5%,
-        100% 5%,
-        95% 7.5%,
-        100% 10%,
-        95% 12.5%,
-        100% 15%,
-        95% 17.5%,
-        100% 20%,
-        95% 22.5%,
-        100% 25%,
-        95% 27.5%,
-        100% 30%,
-        95% 32.5%,
-        100% 35%,
-        95% 37.5%,
-        100% 40%,
-        95% 42.5%,
-        100% 45%,
-        95% 47.5%,
-        100% 50%,
-        95% 52.5%,
-        100% 55%,
-        95% 57.5%,
-        100% 60%,
-        95% 62.5%,
-        100% 65%,
-        95% 67.5%,
-        100% 70%,
-        95% 72.5%,
-        100% 75%,
-        95% 77.5%,
-        100% 80%,
-        95% 82.5%,
-        100% 85%,
-        95% 87.5%,
-        100% 90%,
-        95% 92.5%,
-        100% 95%,
-        95% 97.5%,
-        100% 100%,
-        0 100%
-    );
+    clip-path: $sawtooth-path;
 }
 
 .navbar-two {
@@ -158,7 +70,7 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    z-index: 1002; /* Above both the texture and animated navbar */
+    z-index: 1002;
     padding: 20px;
 }
 
@@ -193,7 +105,7 @@ $nav-linear-gradient: linear-gradient(90deg, #A5E6E1, #5CCDC0, #20B2AA);
             position: absolute;
             left: 50%; 
             top: 0;
-            background: $nav-linear-gradient;
+            background: $nav-background-color;
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             padding: 10px;
