@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import PostList from './components/PostList';
 import CreatePost from './components/CreatePost';
 import Navbar from './components/Navbar'; 
+import InfoBar from './components/InfoBar';
 import './App.scss';
 import './i18n';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/create" element={<CreatePost />} />
           </Routes>
         </div>
+        <InfoBar />
       </div>
     </Router>
   );

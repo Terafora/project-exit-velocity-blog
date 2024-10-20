@@ -1,0 +1,30 @@
+// InfoBar.scss
+
+.info-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    overflow: hidden;
+    z-index: 900;
+}
+
+.scrolling-text {
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll-left 23s linear infinite;
+    padding-left: 100%;
+    width: max-content;
+}
+
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
