@@ -43,7 +43,6 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
     max-height: 100.1vh;
 }
 
-/* Actual navbar with animated gradient */
 .navbar {
     position: absolute;
     top: 0;
@@ -51,12 +50,21 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
     min-height: 100vh;
     max-height: 100vh;
     width: 250px;
-    margin:0;
+    margin: 0;
     background: $nav-background-color;
     z-index: 1000;
     animation: scroll 10s linear infinite;
     clip-path: $sawtooth-path;
+    transition: background-color 0.5s ease-in-out; // Adds the smooth transition
 }
+
+.navbar-two {
+    top: -100vh;
+    min-height: 100.1vh;
+    max-height: 100.1vh;
+    transition: background-color 0.5s ease-in-out; // Adds the smooth transition here too
+}
+
 
 .navbar-two {
     top: -100vh;
