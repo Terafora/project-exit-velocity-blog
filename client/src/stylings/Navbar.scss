@@ -55,14 +55,14 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
     z-index: 1000;
     animation: scroll 10s linear infinite;
     clip-path: $sawtooth-path;
-    transition: background-color 0.5s ease-in-out; // Adds the smooth transition
+    transition: background-color 0.5s ease-in-out;
 }
 
 .navbar-two {
     top: -100vh;
     min-height: 100.1vh;
     max-height: 100.1vh;
-    transition: background-color 0.5s ease-in-out; // Adds the smooth transition here too
+    transition: background-color 0.5s ease-in-out;
 }
 
 
@@ -160,6 +160,88 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
         transform: translateY(0);
     }
 }
+
+.lense-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+}
+
+/* Base styling for all lens elements */
+.lens {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Specific sizes for each lens */
+.lens.outter_shell {
+    width: 72%;
+    height: 72%;
+    transform: translate(-56%, -50%); /* Adjust positioning */
+}
+
+.lens.outter {
+    width: 52%;
+    height: 52%;
+    transform: translate(-50%, -50%);
+    animation: rotateOutter 4s ease-in-out infinite;
+}
+
+.lens.inner_shell {
+    width: 42%;
+    height: 42%;
+    transform: translate(-50%, -50%);
+}
+
+.lens.inner {
+    width: 35%;
+    height: 35%;
+    transform: translate(-50%, -50%);
+    animation: rotateInner 8s ease-in-out infinite;
+}
+
+.lens.lense {
+    width: 20%;
+    height: 20%;
+    transform: translate(-50%, -50%);
+    animation: rotateLenseInner 8s linear infinite;
+}
+
+
+@keyframes rotateOutter {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    40% { transform: translate(-50%, -50%) rotate(180deg); }
+    60% { transform: translate(-50%, -50%) rotate(180deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotateInner {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    40% { transform: translate(-50%, -50%) rotate(-180deg); }
+    60% { transform: translate(-50%, -50%) rotate(-180deg); }
+    100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* Keyframe for seamless, continuous rotation of lense_inner */
+@keyframes rotateLenseInner {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+
+
+
+
+
+
 
 @media (max-width: 768px) {
     .navbar {

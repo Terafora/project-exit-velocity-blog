@@ -55,6 +55,14 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
                     </ul>
                 </li>
             </ul>
+            <div className="lense-container">
+                <img src="/assets/lense/outter_shell.svg" alt="lens" className="lens outter_shell" />
+                <img src="/assets/lense/outter.svg" alt="lens" className="lens outter" />
+                <img src="/assets/lense/inner_shell.svg" alt="lens" className="lens inner_shell" />
+                <img src="/assets/lense/inner.svg" alt="lens" className="lens inner" />
+                <img src="/assets/lense/lense.svg" alt="lens" className="lens lense" />
+            </div>
+
         </div>
     );
 };
