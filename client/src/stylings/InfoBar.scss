@@ -15,7 +15,7 @@
 .scrolling-text {
     white-space: nowrap;
     display: inline-block;
-    animation: scroll-left 23s linear infinite;
+    animation: scroll-left 20s linear infinite;
     padding-left: 100%;
     width: max-content;
 }
@@ -23,7 +23,7 @@
 
 @keyframes scroll-left {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
         transform: translateX(-100%);
