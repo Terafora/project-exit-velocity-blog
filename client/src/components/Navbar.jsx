@@ -6,6 +6,8 @@ import '../stylings/Navbar.scss';
 const Navbar = ({ changeLanguage, updateInfoBarText }) => {
     const { t, i18n } = useTranslation(); 
     const location = useLocation();
+
+    // Define colors for each route
     const routeColors = {
         '/': '#20B2AA', // Home page color
         '/about': '#FFD700', // About page color
@@ -28,7 +30,7 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
         const newTextKey = routeTextKeys[location.pathname] || 'infobar.default';
         const newText = t(newTextKey);
         updateInfoBarText(newText);
-    }, [location.pathname, i18n.language, t, updateInfoBarText]); 
+    }, [location.pathname, i18n.language, t, updateInfoBarText, routeTextKeys]);
 
     return (
         <div className="navbar-wrapper">
@@ -47,7 +49,7 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
 
                 {/* Language Selector with dynamic background for dropdown-menu */}
                 <li className="navbar-item dropdown">
-                    <a href="#" className="dropdown-toggle">{t('language')}</a>
+                    <button type="button" className="dropdown-toggle">{t('language')}</button> {/* Changed from <a> to <button> */}
                     <ul className="dropdown-menu" style={{ backgroundColor: navbarColor }}>
                         <li className="dropdown-item"><button onClick={() => changeLanguage('en')}>English</button></li>
                         <li className="dropdown-item"><button onClick={() => changeLanguage('fr')}>French</button></li>
@@ -55,14 +57,6 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
                     </ul>
                 </li>
             </ul>
-            <div className="lense-container">
-                <img src="/assets/lense/outter_shell.svg" alt="lens" className="lens outter_shell" />
-                <img src="/assets/lense/outter.svg" alt="lens" className="lens outter" />
-                <img src="/assets/lense/inner_shell.svg" alt="lens" className="lens inner_shell" />
-                <img src="/assets/lense/inner.svg" alt="lens" className="lens inner" />
-                <img src="/assets/lense/lense.svg" alt="lens" className="lens lense" />
-            </div>
-
         </div>
     );
 };
