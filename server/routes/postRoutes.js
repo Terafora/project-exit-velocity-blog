@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const authMiddleware = require('../middleware/authMiddleware');
 
-// Get all posts
+// Get all posts (public route)
 router.get('/', async (req, res) => {
     try {
         const posts = await Post.find();
@@ -12,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get a specific post
+// Get a specific post (public route)
 router.get('/:postId', async (req, res) => {
     try {
         const post = await Post.findById(req.params.postId);
@@ -22,16 +23,14 @@ router.get('/:postId', async (req, res) => {
     }
 });
 
-// Create a post
-router.post('/', async (req, res) => {
+// Create a post (protected route)
+router.post('/', authMiddleware, async (req, res) => {
     const newPost = new Post(req.body);
-    await newPost.save();
-    res.status(201).json(newPost);
     try {
-        const savedPost = await post.save();
-        res.json(savedPost);
+        await newPost.save(); 
+        res.status(201).json(newPost); 
     } catch (err) {
-        res.status(500).res.json({ message: err });
+        res.status(500).json({ message: err });
     }
 });
 
