@@ -1,81 +1,51 @@
+// client/src/components/CreatePost.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
-    date: ''
+    author: ''
   });
-
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.title || !formData.content || !formData.date) {
-      setError('Please fill out all fields.');
-      return;
-    }
-
+    const token = localStorage.getItem('token');
     try {
-      const response = await axios.post('/api/posts', formData);
-      console.log('Post created:', response.data);
-      // After successful post creation, redirect to home page (or another page)
-      navigate('/');
+      await axios.post('/api/posts', formData, {
+        headers: {
+          Authorization: token
+        }
+      });
+      alert('Post created successfully');
     } catch (error) {
-      console.error('There was an error creating the post!', error);
-      setError('There was an error submitting your post.');
+      console.error('Error creating post', error);
+      alert('Error creating post');
     }
   };
 
   return (
-    <div>
-      <h2>Create New Blog Post</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="content">Content:</label>
-          <textarea
-            id="content"
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="date">Date:</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Create Post</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Title:</label>
+        <input type="text" name="title" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Content:</label>
+        <textarea name="content" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Author:</label>
+        <input type="text" name="author" onChange={handleChange} />
+      </div>
+      <button type="submit">Create Post</button>
+    </form>
   );
 };
 
