@@ -1,0 +1,14 @@
+{
+    "home": "Hejmo",
+    "about": "Pri Ni",
+    "contact": "Kontakto",
+    "blog": "Blogo",
+    "language": "Lingvoj",
+    "infobar": {
+        "home": "Bonvenon al la retejo! Rigardu niajn plej novajn blogaĵojn kaj lernilojn.",
+        "about": "Sciu pli pri ni kaj nia misio.",
+        "blog": "Rigardu la plej novajn blogaĵojn!",
+        "contact": "Kontaktu nin por pliaj informoj.",
+        "default": "Bonvenon al la retejo! Rigardu niajn plej novajn blogaĵojn kaj lernilojn."
+    }
+}
