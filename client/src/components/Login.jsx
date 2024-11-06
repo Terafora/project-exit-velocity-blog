@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const response = await axios.post('/api/auth/login', credentials);
       localStorage.setItem('token', response.data.token); // Store token in local storage
-      navigate('/create'); // Redirect to the blog creation page
+      navigate('/dashboard'); // Redirect to the blog creation page
     } catch (error) {
       setError('Invalid credentials');
     }
