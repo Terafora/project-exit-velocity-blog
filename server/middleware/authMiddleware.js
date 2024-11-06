@@ -1,7 +1,5 @@
-// server/middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
 
-// Middleware to protect routes
 module.exports = function (req, res, next) {
   const token = req.header('Authorization');
 
