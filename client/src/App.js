@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';  
 import Navbar from './components/Navbar'; 
 import InfoBar from './components/InfoBar';
+import 'react-quill/dist/quill.snow.css';
 import './App.scss';
 import './i18n';
 
