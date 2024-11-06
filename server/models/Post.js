@@ -13,6 +13,9 @@ const postSchema = new mongoose.Schema({
         ja: { type: String, required: true },
         eo: { type: String, required: true }
     },
+    author: { type: String, required: true },
+    tags: [{ type: String }],
+    imageURL: { type: String },
     date: { type: Date, default: Date.now }
 });
 

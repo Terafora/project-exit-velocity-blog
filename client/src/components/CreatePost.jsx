@@ -5,13 +5,15 @@ const CreatePost = () => {
     const [formData, setFormData] = useState({
         title: { en: '', fr: '', ja: '', eo: '' },
         content: { en: '', fr: '', ja: '', eo: '' },
+        author: '',
+        tags: ''
     });
     const [imageURL, setImageURL] = useState('');
 
-    const handleChange = (e, lang, field) => {
+    const handleChange = (value, lang, field) => {
         setFormData({
             ...formData,
-            [field]: { ...formData[field], [lang]: e.target.value }
+            [field]: lang ? { ...formData[field], [lang]: value } : value
         });
     };
 
@@ -36,9 +38,11 @@ const CreatePost = () => {
         e.preventDefault();
         const token = localStorage.getItem('token');
 
+        // Prepare post data, including tags split into an array
         const postData = {
             ...formData,
-            imageURL // Only one URL for the image, used across all translations
+            tags: formData.tags.split(',').map(tag => tag.trim()), // Convert tags to array
+            imageURL
         };
 
         try {
@@ -57,6 +61,30 @@ const CreatePost = () => {
             <form onSubmit={handleSubmit}>
                 <h3>Create Post</h3>
 
+                {/* Author Input */}
+                <div className="mb-4">
+                    <label>Author:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter author name"
+                        value={formData.author}
+                        onChange={(e) => handleChange(e.target.value, null, 'author')}
+                    />
+                </div>
+
+                {/* Tags Input */}
+                <div className="mb-4">
+                    <label>Tags (comma-separated):</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="e.g., JavaScript, Web Development, React"
+                        value={formData.tags}
+                        onChange={(e) => handleChange(e.target.value, null, 'tags')}
+                    />
+                </div>
+
                 {/* Image Upload */}
                 <div className="mb-4">
                     <label>Upload Image:</label>
@@ -73,7 +101,7 @@ const CreatePost = () => {
                             className="form-control"
                             placeholder={`Title in ${lang.toUpperCase()}`}
                             value={formData.title[lang]}
-                            onChange={(e) => handleChange(e, lang, 'title')}
+                            onChange={(e) => handleChange(e.target.value, lang, 'title')}
                         />
 
                         <h4>Content ({lang.toUpperCase()}):</h4>
@@ -82,7 +110,7 @@ const CreatePost = () => {
                             placeholder={`Write HTML content for ${lang.toUpperCase()}`}
                             rows="5"
                             value={formData.content[lang]}
-                            onChange={(e) => handleChange(e, lang, 'content')}
+                            onChange={(e) => handleChange(e.target.value, lang, 'content')}
                         />
 
                         {/* Inline Preview for Each Language */}
