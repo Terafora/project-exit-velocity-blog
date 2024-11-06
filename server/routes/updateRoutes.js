@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const authMiddleware = require('../middleware/authMiddleware');
 
-// Update a post
-router.patch('/:postId', async (req, res) => {
+router.patch('/:postId', authMiddleware, async (req, res) => {
     try {
-        const updatedPost = await Post.updateOne(
-            { _id: req.params.postId },
-            { $set: { title: req.body.title } }
+        const updatedPost = await Post.findByIdAndUpdate(
+            req.params.postId,
+            { $set: req.body },
+            { new: true }
         );
         res.json(updatedPost);
     } catch (err) {
-        res.status(500).res.json({ message: err });
+        res.status(500).json({ message: err });
     }
 });
 
