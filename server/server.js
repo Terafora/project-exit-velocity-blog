@@ -6,6 +6,7 @@ require('dotenv').config();
 const postRoutes = require('./routes/postRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const authRoutes = require('./routes/authRoutes');
+const deleteRoutes = require('./routes/deleteRoutes');
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use('/api/posts', postRoutes);
 app.use('/api/updates', updateRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/delete', deleteRoutes);
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
