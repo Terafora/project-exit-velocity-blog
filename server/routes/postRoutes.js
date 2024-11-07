@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         const posts = await Post.find();
         res.json(posts);
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json({ message: err.message });
     }
 });
 
@@ -19,7 +19,7 @@ router.get('/:postId', async (req, res) => {
         const post = await Post.findById(req.params.postId);
         res.json(post);
     } catch (err) {
-        res.json({ message: err });
+        res.status(500).json({ message: err.message });
     }
 });
 
@@ -30,7 +30,9 @@ router.post('/', authMiddleware, async (req, res) => {
         await newPost.save(); 
         res.status(201).json(newPost); 
     } catch (err) {
-        res.status(500).json({ message: err });
+        // Return detailed validation error message
+        res.status(400).json({ message: 'Validation error', error: err.message });
+        console.error("Validation error:", err.message); // Log detailed error to the console
     }
 });
 
