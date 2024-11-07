@@ -18,43 +18,58 @@ const CreatePost = () => {
     };
 
     const handleImageUpload = async (e) => {
-        const file = e.target.files[0];
-        const uploadFormData = new FormData();
-        uploadFormData.append('file', file);
-        uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
-
-        try {
-            const response = await axios.post(
-                `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, 
-                uploadFormData
-            );
-            setImageURL(response.data.secure_url);
-        } catch (error) {
-            console.error('Error uploading image:', error);
+      const file = e.target.files[0];
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', file);
+      uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+  
+      try {
+          const response = await axios.post(
+              `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, 
+              uploadFormData
+          );
+          setImageURL(response.data.secure_url);
+      } catch (error) {
+          console.error('Error uploading image:', error);
+          console.log('Response data:', error.response?.data); // Log detailed response data for debugging
         }
     };
+  
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const token = localStorage.getItem('token');
-
-        // Prepare post data, including tags split into an array
-        const postData = {
-            ...formData,
-            tags: formData.tags.split(',').map(tag => tag.trim()), // Convert tags to array
-            imageURL
-        };
-
-        try {
-            await axios.post('/api/posts', postData, {
-                headers: { Authorization: token }
-            });
-            alert('Post created successfully');
-        } catch (error) {
-            console.error('Error creating post', error);
-            alert('Error creating post');
-        }
-    };
+      e.preventDefault();
+      const token = localStorage.getItem('token');
+  
+      const postData = {
+          ...formData,
+          tags: formData.tags.split(',').map(tag => tag.trim()),
+          imageURL,
+      };
+  
+      console.log("Data to be sent:", postData); // Add this line to inspect the data structure
+  
+      // Check for missing fields
+      const requiredLanguages = ['en', 'fr', 'ja', 'eo'];
+      const missingFields = requiredLanguages.filter(lang => 
+          !postData.title[lang] || !postData.content[lang]
+      );
+  
+      if (missingFields.length > 0 || !postData.author) {
+          alert('Please fill in all required fields for each language and provide an author name.');
+          return;
+      }
+  
+      try {
+          await axios.post('/api/posts', postData, {
+              headers: { Authorization: token }
+          });
+          alert('Post created successfully');
+      } catch (error) {
+          console.error('Error creating post', error);
+          alert('Error creating post');
+      }
+  };
+  
 
     return (
         <div className="container my-4">
