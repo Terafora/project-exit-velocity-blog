@@ -5,9 +5,10 @@ import PostList from './components/PostList';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
 import Dashboard from './components/Dashboard';
-import Login from './components/Login';  
-import Navbar from './components/Navbar'; 
+import Login from './components/Login';
+import Navbar from './components/Navbar';
 import InfoBar from './components/InfoBar';
+import PostDetails from './components/PostDetails'; // Import PostDetails component
 import 'react-quill/dist/quill.snow.css';
 import './App.scss';
 import './i18n';
@@ -32,13 +33,13 @@ function App() {
         <Navbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} /> 
         <div className="content-wrapper">
           <Routes>
+            {/* Blog Routes */}
             <Route path="/blog" element={<PostList />} />
+            <Route path="/blog/:postId" element={<PostDetails />} />
+
+            {/* Other Routes */}
             <Route path="/login" element={<Login />} />
-            
-            {/* Dashboard route for managing posts */}
             <Route path="/dashboard" element={token ? <Dashboard /> : <Navigate to="/login" />} />
-            
-            {/* Create and Edit post routes, protected */}
             <Route path="/create" element={token ? <CreatePost /> : <Navigate to="/login" />} />
             <Route path="/edit/:postId" element={token ? <EditPost /> : <Navigate to="/login" />} />
           </Routes>
