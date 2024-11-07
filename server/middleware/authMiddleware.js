@@ -1,9 +1,13 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = function (req, res, next) {
-  const token = req.header('Authorization');
+  const authHeader = req.header('Authorization');
+  
+  // Ensure the token is provided
+  if (!authHeader) return res.status(401).json({ message: 'Access denied. No token provided.' });
 
-  if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
+  // Check for Bearer token format
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader;
 
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
