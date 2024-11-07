@@ -6,21 +6,26 @@ require('dotenv').config();
 const postRoutes = require('./routes/postRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const authRoutes = require('./routes/authRoutes');
-const deleteRoutes = require('./routes/deleteRoutes');
 
 const app = express();
-app.use(cors());
+
+// Enable CORS with specific configuration
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Middleware to parse JSON request bodies
 app.use(express.json());
 
 // Use routes
 app.use('/api/posts', postRoutes);
 app.use('/api/updates', updateRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/delete', deleteRoutes);
-
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((error) => console.log('Error connecting to MongoDB:', error));
 
