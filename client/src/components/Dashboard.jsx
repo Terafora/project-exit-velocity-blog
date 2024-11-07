@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // Import i18n hook
 
 const Dashboard = () => {
+    const { i18n } = useTranslation(); // Get the i18n instance
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
@@ -39,6 +41,9 @@ const Dashboard = () => {
         }
     };
 
+    // Define the current language
+    const selectedLanguage = i18n.language || 'en'; // Default to 'en' if undefined
+
     return (
         <div>
             <h1>Admin Dashboard</h1>
@@ -47,8 +52,9 @@ const Dashboard = () => {
             <ul>
                 {posts.map((post) => (
                     <li key={post._id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.content}</p>
+                        {/* Render title and content based on the selected language */}
+                        <h3>{post.title[selectedLanguage] || post.title.en || "Untitled"}</h3>
+                        <p>{post.content[selectedLanguage]?.substring(0, 150) || post.content.en?.substring(0, 150) || "No content available"}</p>
                         <button onClick={() => handleEditPost(post._id)}>Edit</button>
                         <button onClick={() => handleDeletePost(post._id)}>Delete</button>
                     </li>
