@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Import i18n hook
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
-    const { i18n } = useTranslation(); // Get the i18n instance
+    const { i18n } = useTranslation();
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
@@ -16,6 +16,7 @@ const Dashboard = () => {
         try {
             const response = await axios.get('/api/posts');
             setPosts(response.data);
+            console.log("Posts fetched:", response.data); // Debugging log
         } catch (error) {
             console.error("Error fetching posts:", error);
         }
@@ -41,8 +42,8 @@ const Dashboard = () => {
         }
     };
 
-    // Define the current language
-    const selectedLanguage = i18n.language || 'en'; // Default to 'en' if undefined
+    const selectedLanguage = i18n.language || 'en';
+    console.log("Current selected language:", selectedLanguage); // Debugging log
 
     return (
         <div>
@@ -52,7 +53,6 @@ const Dashboard = () => {
             <ul>
                 {posts.map((post) => (
                     <li key={post._id}>
-                        {/* Render title and content based on the selected language */}
                         <h3>{post.title[selectedLanguage] || post.title.en || "Untitled"}</h3>
                         <p>{post.content[selectedLanguage]?.substring(0, 150) || post.content.en?.substring(0, 150) || "No content available"}</p>
                         <button onClick={() => handleEditPost(post._id)}>Edit</button>

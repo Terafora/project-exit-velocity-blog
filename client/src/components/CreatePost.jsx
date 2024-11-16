@@ -9,6 +9,7 @@ const CreatePost = () => {
         tags: ''
     });
     const [imageURL, setImageURL] = useState('');
+    const [error, setError] = useState(null);
 
     const handleChange = (value, lang, field) => {
         setFormData({
@@ -18,63 +19,66 @@ const CreatePost = () => {
     };
 
     const handleImageUpload = async (e) => {
-      const file = e.target.files[0];
-      const uploadFormData = new FormData();
-      uploadFormData.append('file', file);
-      uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
-  
-      try {
-          const response = await axios.post(
-              `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, 
-              uploadFormData
-          );
-          setImageURL(response.data.secure_url);
-      } catch (error) {
-          console.error('Error uploading image:', error);
-          console.log('Response data:', error.response?.data); // Log detailed response data for debugging
+        const file = e.target.files[0];
+        const uploadFormData = new FormData();
+        uploadFormData.append('file', file);
+        uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+
+        try {
+            const response = await axios.post(
+                `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, 
+                uploadFormData
+            );
+            setImageURL(response.data.secure_url);
+            console.log("Image uploaded successfully:", response.data.secure_url); // Log success
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            setError("Image upload failed. Please check Cloudinary configuration.");
+            console.log('Detailed Cloudinary error:', error.response?.data); // Detailed error log
         }
     };
-  
 
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      const token = localStorage.getItem('token');
-  
-      const postData = {
-          ...formData,
-          tags: formData.tags.split(',').map(tag => tag.trim()),
-          imageURL,
-      };
-  
-      console.log("Data to be sent:", postData); // Add this line to inspect the data structure
-  
-      // Check for missing fields
-      const requiredLanguages = ['en', 'fr', 'ja', 'eo'];
-      const missingFields = requiredLanguages.filter(lang => 
-          !postData.title[lang] || !postData.content[lang]
-      );
-  
-      if (missingFields.length > 0 || !postData.author) {
-          alert('Please fill in all required fields for each language and provide an author name.');
-          return;
-      }
-  
-      try {
-          await axios.post('/api/posts', postData, {
-              headers: { Authorization: token }
-          });
-          alert('Post created successfully');
-      } catch (error) {
-          console.error('Error creating post', error);
-          alert('Error creating post');
-      }
-  };
-  
+        e.preventDefault();
+        const token = localStorage.getItem('token');
+
+        const postData = {
+            ...formData,
+            tags: formData.tags.split(',').map(tag => tag.trim()),
+            imageURL,
+        };
+
+        console.log("Post data being prepared for submission:", postData); // Log data structure
+
+        const requiredLanguages = ['en', 'fr', 'ja', 'eo'];
+        const missingFields = requiredLanguages.filter(lang => 
+            !postData.title[lang] || !postData.content[lang]
+        );
+
+        if (missingFields.length > 0 || !postData.author) {
+            alert('Please fill in all required fields for each language and provide an author name.');
+            return;
+        }
+
+        try {
+            await axios.post('/api/posts', postData, {
+                headers: { Authorization: token }
+            });
+            alert('Post created successfully');
+            setError(null); // Clear previous errors on success
+        } catch (error) {
+            console.error('Error creating post', error);
+            setError("Error creating post. Please check your input and try again.");
+            console.log("Post creation error details:", error.response?.data); // Log error details
+        }
+    };
 
     return (
         <div className="container my-4">
             <form onSubmit={handleSubmit}>
                 <h3>Create Post</h3>
+
+                {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error if present */}
 
                 {/* Author Input */}
                 <div className="mb-4">
