@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const PostList = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   const selectedLanguage = i18n.language || 'en'; // Use 'en' as a default fallback
 
   useEffect(() => {
     axios.get('/api/posts')
-      .then(response => setPosts(response.data))
+      .then(response => {
+        console.log("Fetched posts:", response.data); // Debugging log
+        setPosts(response.data);
+      })
       .catch(error => {
         console.error(error);
         setError('Failed to load posts.');
@@ -20,7 +23,7 @@ const PostList = () => {
 
   return (
     <div className="container my-4">
-      <h1>Blog Posts</h1>
+      <h1>{t('blog_posts')}</h1>
       {error && <p>{error}</p>}
       {posts.length === 0 && <p>No posts available.</p>}
       {posts.map(post => (
@@ -40,7 +43,7 @@ const PostList = () => {
               : post.content?.en?.substring(0, 150) || 'No content available'}
             ...
           </p>
-          <Link to={`/blog/${post._id}`} className="btn btn-secondary btn-sm">Read More</Link>
+          <Link to={`/blog/${post._id}`} className="btn btn-secondary btn-sm">{t('read_more')}</Link>
         </div>
       ))}
     </div>

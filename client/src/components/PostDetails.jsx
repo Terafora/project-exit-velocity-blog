@@ -13,8 +13,8 @@ const PostDetails = () => {
         const fetchPost = async () => {
             try {
                 const response = await axios.get(`/api/posts/${postId}`);
+                console.log("Fetched post details:", response.data); // Debugging log
                 setPost(response.data);
-                console.log("Post details:", response.data); // Debugging log
             } catch (err) {
                 console.error('Error fetching post:', err);
                 setError('Could not retrieve post data');
