@@ -24,7 +24,8 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
     };
 
     // Set navbar background color based on the current path
-    const navbarColor = routeColors[location.pathname] || '#20B2AA';
+    const isBlogArticle = location.pathname.startsWith('/blog/') && location.pathname.length > 6;
+    const navbarColor = isBlogArticle ? '#C71585' : (routeColors[location.pathname] || '#20B2AA');
 
     useEffect(() => {
         const newTextKey = routeTextKeys[location.pathname] || 'infobar.default';
