@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
+import Home from './components/Home';
 import PostList from './components/PostList';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/EditPost';
@@ -33,6 +34,9 @@ function App() {
         <Navbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} /> 
         <div className="content-wrapper">
           <Routes>
+            {/* Home Route */}
+  <         Route path="/" element={<Home />} />
+  
             {/* Blog Routes */}
             <Route path="/blog" element={<PostList />} />
             <Route path="/blog/:postId" element={<PostDetails />} />
