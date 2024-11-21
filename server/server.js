@@ -6,6 +6,7 @@ require('dotenv').config();
 const postRoutes = require('./routes/postRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const authRoutes = require('./routes/authRoutes');
+const deleteRoute = require('./routes/deleteRoute'); // Add this line
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/api/posts', postRoutes);
 app.use('/api/updates', updateRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/delete', deleteRoute); // Add this line
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)

@@ -36,7 +36,7 @@ const Dashboard = () => {
             await axios.delete(`/api/delete/${postId}`, {
                 headers: { Authorization: token }
             });
-            fetchPosts();
+            fetchPosts(); // Refresh the list of posts after deletion
         } catch (error) {
             console.error("Error deleting post:", error);
         }
