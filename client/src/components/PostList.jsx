@@ -27,23 +27,40 @@ const PostList = () => {
       {error && <p>{error}</p>}
       {posts.length === 0 && <p>No posts available.</p>}
       {posts.map(post => (
-        <div key={post._id} className="mb-4">
-          <Link to={`/blog/${post._id}`}>
-            <h2>
-              {/* Ensure title is available and access specific language */}
-              {post.title && typeof post.title[selectedLanguage] === 'string' 
-                ? post.title[selectedLanguage] 
-                : post.title?.en || 'Untitled Post'}
-            </h2>
-          </Link>
-          <p>
-            {/* Ensure content is available and access specific language */}
-            {post.content && typeof post.content[selectedLanguage] === 'string' 
-              ? post.content[selectedLanguage].substring(0, 150) 
-              : post.content?.en?.substring(0, 150) || 'No content available'}
-            ...
-          </p>
-          <Link to={`/blog/${post._id}`} className="btn btn-secondary btn-sm">{t('read_more')}</Link>
+        <div key={post._id} className="card mb-4">
+          {post.imageURL && (
+            <img 
+              src={post.imageURL} 
+              alt={post.title[selectedLanguage] || post.title.en} 
+              className="card-img-top"
+              style={{ 
+                height: '200px', 
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }} 
+            />
+          )}
+          <div className="card-body">
+            <Link to={`/blog/${post._id}`} className="text-decoration-none">
+              <h2 className="card-title">
+                {post.title && typeof post.title[selectedLanguage] === 'string' 
+                  ? post.title[selectedLanguage] 
+                  : post.title?.en || 'Untitled Post'}
+              </h2>
+            </Link>
+            <p className="card-text">
+              {post.content && typeof post.content[selectedLanguage] === 'string' 
+                ? post.content[selectedLanguage].substring(0, 150) 
+                : post.content?.en?.substring(0, 150) || 'No content available'}
+              ...
+            </p>
+            <Link 
+              to={`/blog/${post._id}`} 
+              className="btn btn-secondary btn-sm"
+            >
+              {t('read_more')}
+            </Link>
+          </div>
         </div>
       ))}
     </div>
