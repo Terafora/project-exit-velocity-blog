@@ -20,21 +20,25 @@ const CreatePost = () => {
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
+        if (!file) return;
+
         const uploadFormData = new FormData();
         uploadFormData.append('file', file);
         uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
 
         try {
+            console.log('Uploading with preset:', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+            
             const response = await axios.post(
-                `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, 
+                `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
                 uploadFormData
             );
+
             setImageURL(response.data.secure_url);
-            console.log("Image uploaded successfully:", response.data.secure_url); // Log success
+            console.log("Upload successful:", response.data);
         } catch (error) {
-            console.error('Error uploading image:', error);
-            setError("Image upload failed. Please check Cloudinary configuration.");
-            console.log('Detailed Cloudinary error:', error.response?.data); // Detailed error log
+            console.error('Upload error:', error.response?.data || error);
+            setError("Image upload failed - check console for details");
         }
     };
 
