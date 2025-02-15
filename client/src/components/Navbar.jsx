@@ -56,6 +56,7 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
                         <li className="dropdown-item"><button onClick={() => changeLanguage('fr')}>French</button></li>
                         <li className="dropdown-item"><button onClick={() => changeLanguage('eo')}>Esperanto</button></li>
                         <li className="dropdown-item"><button onClick={() => changeLanguage('ja')}>Japanese</button></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('es')}>Spanish</button></li>
                     </ul>
                 </li>
             </ul>

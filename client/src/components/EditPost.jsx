@@ -5,8 +5,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 const EditPost = () => {
     const { postId } = useParams();
     const [formData, setFormData] = useState({
-        title: { en: '', fr: '', ja: '', eo: '' },
-        content: { en: '', fr: '', ja: '', eo: '' },
+        title: { en: '', fr: '', ja: '', eo: '', es: "" },
+        content: { en: '', fr: '', ja: '', eo: '', es: "" },
         author: '',
         tags: '',
     });
@@ -22,8 +22,8 @@ const EditPost = () => {
             const response = await axios.get(`/api/posts/${postId}`);
             const { title, content, author, tags, imageURL } = response.data;
             setFormData({
-                title: title || { en: '', fr: '', ja: '', eo: '' },
-                content: content || { en: '', fr: '', ja: '', eo: '' },
+                title: title || { en: '', fr: '', ja: '', eo: '', es: '' },
+                content: content || { en: '', fr: '', ja: '', eo: '', es: '' },
                 author: author || '',
                 tags: tags.join(', ') || '',
             });

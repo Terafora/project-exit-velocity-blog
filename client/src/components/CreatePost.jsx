@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const CreatePost = () => {
     const [formData, setFormData] = useState({
-        title: { en: '', fr: '', ja: '', eo: '' },
-        content: { en: '', fr: '', ja: '', eo: '' },
+        title: { en: '', fr: '', ja: '', eo: '', es: "" },
+        content: { en: '', fr: '', ja: '', eo: '', es: "" },
         author: '',
         tags: ''
     });

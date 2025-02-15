@@ -1,0 +1,16 @@
+{
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "blog": "Blog",
+    "blog_posts": "Publicaciones del Blog",
+    "read_more": "Leer más",
+    "language": "Idiomas",
+    "infobar": {
+        "home": "¡Bienvenido al sitio! Revisa nuestras últimas publicaciones y tutoriales.",
+        "about": "Conoce más sobre nosotros y nuestra misión.",
+        "blog": "¡Mira las últimas publicaciones del blog!",
+        "contact": "Ponte en contacto con nosotros para más información.",
+        "default": "¡Bienvenido al sitio! Revisa nuestras últimas publicaciones y tutoriales."
+    }
+}
