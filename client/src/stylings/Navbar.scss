@@ -11,6 +11,10 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
     height: 100vh;
     min-width: 350px;
     overflow: hidden;
+    
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 /* Keyframes for the scrolling animation */

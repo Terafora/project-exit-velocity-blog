@@ -8,6 +8,7 @@ import EditPost from './components/EditPost';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import MobileNavbar from './components/MobileNavbar';
 import InfoBar from './components/InfoBar';
 import PostDetails from './components/PostDetails'; // Import PostDetails component
 import 'react-quill/dist/quill.snow.css';
@@ -31,7 +32,8 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        <Navbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} /> 
+        <Navbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} />
+        <MobileNavbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} />
         <div className="content-wrapper">
           <Routes>
             {/* Home Route */}
