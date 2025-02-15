@@ -139,7 +139,7 @@ $horizontal-sawtooth-path: polygon(
 
 .mobile-menu {
     position: fixed;
-    top: $mobile-height;
+    top: 50px;
     left: 0;
     width: 100%;
     height: 0;
@@ -149,7 +149,7 @@ $horizontal-sawtooth-path: polygon(
     z-index: 1001;
 
     &.open {
-        height: calc(100vh - #{$mobile-height});
+        height: calc(102vh - #{$mobile-height});
     }
 }
 
