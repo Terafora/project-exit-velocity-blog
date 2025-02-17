@@ -51,19 +51,21 @@ const PostList = () => {
                     : post.title?.en || 'Untitled Post'}
                 </h2>
               </Link>
-              <p className="card-text">
-                {post.content && typeof post.content[selectedLanguage] === 'string' 
-                  ? stripHtmlTags(post.content[selectedLanguage]).substring(0, 150) 
-                  : stripHtmlTags(post.content?.en)?.substring(0, 150) || 'No content available'}
-                ...
-              </p>
-              <Link 
-                to={`/blog/${post._id}`} 
-                className="btn btn-secondary btn-sm"
-              >
-                {t('read_more')}
-              </Link>
             </div>
+          </div>
+          <div className="preview-content">
+            <p className="card-text">
+              {post.content && typeof post.content[selectedLanguage] === 'string' 
+                ? stripHtmlTags(post.content[selectedLanguage]).substring(0, 150) 
+                : stripHtmlTags(post.content?.en)?.substring(0, 150) || 'No content available'}
+              ...
+            </p>
+            <Link 
+              to={`/blog/${post._id}`} 
+              className="btn btn-secondary btn-sm"
+            >
+              {t('read_more')}
+            </Link>
           </div>
         </div>
       ))}

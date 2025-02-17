@@ -1,11 +1,25 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
 @font-face {
   font-family: 'Maswen';
   src: url('../public/fonts/maswen-maswen-regular-400.ttf') format('truetype');
 }
+
 .app-container {
   display: flex;
-  height: 100vh;
-  overflow: visible;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 .content-wrapper {
@@ -13,12 +27,14 @@
   padding-top: 50px;
   padding-left: 20px;
   padding-right: 20px;
-  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .navbar-wrapper {
   width: 350px;
   flex-shrink: 0;
+  position: relative;
 }
 
 /* Ensure Navbar width is respected */

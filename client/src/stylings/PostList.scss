@@ -1,21 +1,74 @@
 .arrow {
     background-color: #000;
-    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
-    width: 100vw;
+    clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 5% 100%, 0% 50%);
+    width: calc(100vw - 10rem);
     position: relative;
-    right: 0;
+    left: 10rem;
+    margin-left: -20rem;
+    padding-left: 4.5rem;
+    z-index: 11;
+
+    @media (max-width: 768px) {
+        width: calc(100vw - 2rem); // Reduced side margins
+        left: 5rem;
+        margin-left: -5rem; // Reduced negative margin
+        padding-right: 1rem; // Add padding for content
+    }
 }
 
 .card {
     --bs-card-border-width: 0;
+    position: relative;
+    transition: margin-bottom 0.3s ease-in-out;
+    
+    &:hover {
+        margin-bottom: 140px; // Adjust this value based on your preview content height
+        
+        .preview-content {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+    }
 }
+
 .card-body {
     color: #fff;
     background-color: #000;
     margin-left: 5rem;
-    border:#000 solid 0;
+    border: #000 solid 0;
 
     a {
         color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 2rem;
+        padding-right: 1rem;
+    }
+}
+
+.preview-content {
+    position: absolute;
+    width: calc(100vw - 10rem); // Match the arrow width
+    background-color: #000;
+    padding: 1rem;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-90%);
+    transition: all 0.2s ease-in-out;
+    top: 98%; // Position it right below the card
+    left: 16rem; // Match the arrow left position
+    margin-left: -20rem; // Match the arrow margin-left
+    padding-left: 4.5rem; // Increased to match title alignment
+    z-index: 10;
+
+    @media (max-width: 768px) {
+        width: calc(100vw - 2rem); // Match arrow width
+        left: 5rem;
+        margin-left: -5rem;
+        padding-left: 2rem;
+        padding-right: 1rem;
     }
 }

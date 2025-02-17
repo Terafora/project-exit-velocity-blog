@@ -40,7 +40,7 @@ const MobileNavbar = ({ changeLanguage, updateInfoBarText }) => {
             {/* Static header container */}
             <div className="mobile-header-container" style={{ backgroundColor: navbarColor }}>
                 <div className="mobile-navbar-header">
-                    <span className="blog-title">Exit Velocity</span>
+                    <span className="blog-title">Project Exit Velocity</span>
                     <button 
                         className={`hamburger ${isMenuOpen ? 'open' : ''}`} 
                         onClick={toggleMenu}
