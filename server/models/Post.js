@@ -18,7 +18,8 @@ const postSchema = new mongoose.Schema({
     author: { type: String, required: true },
     tags: [{ type: String }],
     imageURL: { type: String },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
+    views: { type: Number, default: 0 }
 });
 
 const Post = mongoose.model('Post', postSchema);

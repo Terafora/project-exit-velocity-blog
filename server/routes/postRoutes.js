@@ -16,7 +16,11 @@ router.get('/', async (req, res) => {
 // Get a specific post (public route)
 router.get('/:postId', async (req, res) => {
     try {
-        const post = await Post.findById(req.params.postId);
+        const post = await Post.findByIdAndUpdate(
+            req.params.postId,
+            { $inc: { views: 1 } },
+            { new: true }
+        );
         res.json(post);
     } catch (err) {
         res.status(500).json({ message: err.message });

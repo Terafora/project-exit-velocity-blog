@@ -7,10 +7,14 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
 
 /* Wrapper for navbar and shadow */
 .navbar-wrapper {
-    position: relative;
-    height: 100vh;
+    position: fixed; // Change from relative to fixed
+    height: 100%; // Change from 100vh to 100%
     min-width: 350px;
-    overflow: hidden;
+    overflow: visible; // Change from hidden to visible
+    top: 0; // Add this to fix position from top
+    left: 0; // Add this to fix position from left
+    bottom: 0; // Add this to fix position from bottom
+    z-index: 1000; // Ensure it stays above other content
     
     @media (max-width: 768px) {
         display: none;
@@ -29,10 +33,11 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
 
 /* Shadow divs */
 .navbar-shadow {
-    position: absolute;
-    top: 0.6vh;
+    position: fixed; // Change from absolute to fixed
+    top: 0;
     left: 8px;
-    height: 100vh;
+    bottom: 0; // Add this to fix position from bottom
+    height: 100%; // Change from 100vh to 100%
     width: 250px;
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 999;
@@ -48,11 +53,11 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
 }
 
 .navbar {
-    position: absolute;
+    position: fixed; // Change from absolute to fixed
     top: 0;
     left: 0;
-    min-height: 100vh;
-    max-height: 100vh;
+    bottom: 0; // Add this to fix position from bottom
+    height: 100%; // Change from min-height/max-height to height
     width: 250px;
     margin: 0;
     background: $nav-background-color;
@@ -77,16 +82,17 @@ $sawtooth-path: polygon(0 0, 100% 0, 95% 2.5%, 100% 5%, 95% 7.5%, 100% 10%, 95% 
 }
 
 .navbar-list {
-    position: absolute;
+    position: fixed; // Change from absolute to fixed
     top: 0;
     left: 0;
     width: 250px;
-    height: 100vh; 
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     z-index: 1002;
     padding: 20px;
+    pointer-events: auto; // Ensure clickable
 }
 
 .navbar-item {
