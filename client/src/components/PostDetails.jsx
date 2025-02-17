@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 const PostDetails = () => {
     const { postId } = useParams();
     const navigate = useNavigate();
-    const { i18n } = useTranslation(); 
+    const { t, i18n } = useTranslation(); // Add t for translation
     const [post, setPost] = useState(null);
     const [error, setError] = useState(null);
 
@@ -44,8 +44,8 @@ const PostDetails = () => {
                     <img src={post.imageURL} alt="Post" className="img-fluid mb-4" style={{ maxWidth: '100%' }} />
                 )}
                 <h1>{post.title[selectedLanguage] || post.title.en}</h1>
-                <p><strong>Author:</strong> {post.author}</p>
-                <p><strong>Posted:</strong> {new Date(post.date).toLocaleDateString(selectedLanguage, {
+                <p><strong>{t('author')}:</strong> {post.author}</p>
+                <p><strong>{t('posted')}:</strong> {new Date(post.date).toLocaleDateString(selectedLanguage, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -56,14 +56,14 @@ const PostDetails = () => {
                     dangerouslySetInnerHTML={{ __html: post.content[selectedLanguage] || post.content.en }}
                 />
                 <p>
-                    <strong>Tags:</strong> {post.tags.map((tag, index) => (
+                    <strong>{t('tags')}:</strong> {post.tags.map((tag, index) => (
                         <span key={index} className="badge bg-secondary mx-1">{tag}</span>
                     ))}
                 </p>
                 <hr className="my-4" />
                 <div className="d-flex justify-content-between align-items-center">
                     <p className="mb-0">
-                        👁️ {post.views} views
+                        👁️ {post.views} {t('views')}
                     </p>
                     <div className="share-buttons">
                         <a
@@ -72,7 +72,7 @@ const PostDetails = () => {
                             rel="noopener noreferrer"
                             className="btn btn-outline-primary me-2"
                         >
-                            Share on Facebook
+                            {t('facebook-share')}
                         </a>
                         <a
                             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
@@ -80,13 +80,13 @@ const PostDetails = () => {
                             rel="noopener noreferrer"
                             className="btn btn-outline-primary me-2"
                         >
-                            Share on LinkedIn
+                            {t('linkedin-share')}
                         </a>
                         <a
                             href={`mailto:?subject=${encodeURIComponent(post.title[selectedLanguage] || post.title.en)}&body=${encodeURIComponent(`Check out this blog post: ${window.location.href}`)}`}
                             className="btn btn-outline-primary"
                         >
-                            Share via Email
+                            {t('email-share')}
                         </a>
                     </div>
                 </div>

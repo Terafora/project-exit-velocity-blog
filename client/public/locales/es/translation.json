@@ -15,9 +15,9 @@
     },
     "email-share": "Compartir por correo electrónico",
     "facebook-share": "Compartir en Facebook",
-    "LinkedIn-share": "Compartir en LinkedIn",
-    "Posted": "Publicado",
-    "Author": "Autor",
-    "Tags": "Etiquetas",
-    "Views": "Vistas"
+    "linkedin-share": "Compartir en LinkedIn",
+    "posted": "Publicado",
+    "author": "Autor",
+    "tags": "Etiquetas",
+    "views": "Vistas"
 }

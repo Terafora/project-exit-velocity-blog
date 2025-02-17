@@ -14,9 +14,9 @@
         "default": "Bienvenue sur le site ! Découvrez nos derniers articles de blog et tutoriels."},
     "email-share": "Partager par email",
     "facebook-share": "Partager sur Facebook",
-    "LinkedIn-share": "Partager sur LinkedIn",
-    "Posted": "Publié",
-    "Author": "Auteur",
-    "Tags": "Tags",
-    "Views": "Vues"
+    "linkedin-share": "Partager sur LinkedIn",
+    "posted": "Publié",
+    "author": "Auteur",
+    "tags": "Tags",
+    "views": "Vues"
 }

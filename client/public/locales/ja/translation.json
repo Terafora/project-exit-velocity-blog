@@ -15,9 +15,9 @@
     },
     "email-share": "メールで共有",
     "facebook-share": "Facebookで共有",
-    "LinkedIn-share": "LinkedInで共有",
-    "Posted": "投稿日時",
-    "Author": "著者",
-    "Tags": "タグ",
-    "Views": "閲覧数"        
+    "linkedin-share": "LinkedInで共有",
+    "posted": "投稿日時",
+    "author": "著者",
+    "tags": "タグ",
+    "views": "閲覧数"        
 }
