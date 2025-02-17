@@ -77,10 +77,10 @@ const MobileNavbar = ({ changeLanguage, updateInfoBarText }) => {
                         <span className="language-label">{t('language')}</span>
                         <div className="language-options">
                             <button onClick={() => { changeLanguage('en'); closeMenu(); }}>English</button>
-                            <button onClick={() => { changeLanguage('fr'); closeMenu(); }}>French</button>
+                            <button onClick={() => { changeLanguage('fr'); closeMenu(); }}>Français</button>
                             <button onClick={() => { changeLanguage('eo'); closeMenu(); }}>Esperanto</button>
-                            <button onClick={() => { changeLanguage('ja'); closeMenu(); }}>Japanese</button>
-                            <button onClick={() => { changeLanguage('es'); closeMenu(); }}>Spanish</button>
+                            <button onClick={() => { changeLanguage('ja'); closeMenu(); }}>日本語</button>
+                            <button onClick={() => { changeLanguage('es'); closeMenu(); }}>Español</button>
                         </div>
                     </li>
                 </ul>

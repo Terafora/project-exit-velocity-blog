@@ -50,13 +50,13 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
 
                 {/* Language Selector with dynamic background for dropdown-menu */}
                 <li className="navbar-item dropdown">
-                    <button type="button" className="dropdown-toggle">{t('language')}</button> {/* Changed from <a> to <button> */}
+                    <button type="button" className="dropdown-toggle">{t('language')}</button>
                     <ul className="dropdown-menu" style={{ backgroundColor: navbarColor }}>
                         <li className="dropdown-item"><button onClick={() => changeLanguage('en')}>English</button></li>
-                        <li className="dropdown-item"><button onClick={() => changeLanguage('fr')}>French</button></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('fr')}>Français</button></li>
                         <li className="dropdown-item"><button onClick={() => changeLanguage('eo')}>Esperanto</button></li>
-                        <li className="dropdown-item"><button onClick={() => changeLanguage('ja')}>Japanese</button></li>
-                        <li className="dropdown-item"><button onClick={() => changeLanguage('es')}>Spanish</button></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('ja')}>日本語</button></li>
+                        <li className="dropdown-item"><button onClick={() => changeLanguage('es')}>Español</button></li>
                     </ul>
                 </li>
             </ul>
