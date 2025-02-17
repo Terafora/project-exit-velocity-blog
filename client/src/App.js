@@ -10,7 +10,8 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import InfoBar from './components/InfoBar';
-import PostDetails from './components/PostDetails'; // Import PostDetails component
+import PostDetails from './components/PostDetails';
+import Contact from './components/Contact';
 import 'react-quill/dist/quill.snow.css';
 import './App.scss';
 import './i18n';
@@ -44,6 +45,7 @@ function App() {
             <Route path="/blog/:postId" element={<PostDetails />} />
 
             {/* Other Routes */}
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={token ? <Dashboard /> : <Navigate to="/login" />} />
             <Route path="/create" element={token ? <CreatePost /> : <Navigate to="/login" />} />

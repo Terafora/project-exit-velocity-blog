@@ -1,13 +1,12 @@
 import React from 'react';
+import '../stylings/Home.scss';
 
 const Home = () => {
     return (
-        <div className="container my-4">
-        <h1>Welcome to the site!</h1>
-        <p>Check out our latest blog posts and tutorials.</p>
+        <div className="home-container">
+        <img src="/assets/PEV.png" alt="Project Exit Velocity title"/>
         </div>
     );
 };
     
 export default Home;
-

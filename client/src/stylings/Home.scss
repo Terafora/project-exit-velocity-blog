@@ -1,0 +1,14 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 10rem); // Increased spacing from top
+    padding-top: 4rem; // Add padding to push content down
+}
+
+img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+}
