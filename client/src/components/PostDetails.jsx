@@ -38,7 +38,7 @@ const PostDetails = () => {
                 className="btn btn-outline-secondary mb-4"
                 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
             >
-                ← Back to Blog
+                ← {t('back')}
             </button>
             <div className="post-details">
                 {post.imageURL && (
