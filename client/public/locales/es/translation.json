@@ -12,5 +12,12 @@
         "blog": "¡Mira las últimas publicaciones del blog!",
         "contact": "Ponte en contacto con nosotros para más información.",
         "default": "¡Bienvenido al sitio! Revisa nuestras últimas publicaciones y tutoriales."
-    }
+    },
+    "email-share": "Compartir por correo electrónico",
+    "facebook-share": "Compartir en Facebook",
+    "LinkedIn-share": "Compartir en LinkedIn",
+    "Posted": "Publicado",
+    "Author": "Autor",
+    "Tags": "Etiquetas",
+    "Views": "Vistas"
 }

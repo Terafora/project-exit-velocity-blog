@@ -12,5 +12,12 @@
         "blog": "Rigardu la plej novajn blogaĵojn!",
         "contact": "Kontaktu nin por pliaj informoj.",
         "default": "Bonvenon al la retejo! Rigardu niajn plej novajn blogaĵojn kaj lernilojn."
-    }
+    },
+    "email-share": "Kunhavigi per retpoŝto",
+    "facebook-share": "Kunhavigi ĉe Facebook",
+    "LinkedIn-share": "Kunhavigi ĉe LinkedIn",
+    "Posted": "Afiŝita",
+    "Author": "Aŭtoro",
+    "Tags": "Etikedoj",
+    "Views": "Vidoj"
 }

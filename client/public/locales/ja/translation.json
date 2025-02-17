@@ -12,5 +12,12 @@
         "blog": "最新のブログ投稿をチェックしてください！",
         "contact": "詳細についてはお問い合わせください。",
         "default": "サイトへようこそ！最新のブログ投稿やチュートリアルをチェックしてください。"
-    }
+    },
+    "email-share": "メールで共有",
+    "facebook-share": "Facebookで共有",
+    "LinkedIn-share": "LinkedInで共有",
+    "Posted": "投稿日時",
+    "Author": "著者",
+    "Tags": "タグ",
+    "Views": "閲覧数"        
 }

@@ -12,6 +12,14 @@
     "blog": "Check out the latest blog posts!",
     "contact": "Get in touch with us for more info.",
     "default": "Welcome to the site! Check out our latest blog posts and tutorials."
+    },
+    "email-share": "Share via email",
+    "facebook-share": "Share on Facebook",
+    "linkedin-share": "Share on LinkedIn",
+    "posted": "Posted",
+    "author": "Author",
+    "tags": "Tags",
+    "views": "Views"
   }
 }
   
