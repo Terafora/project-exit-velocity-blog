@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { stripHtmlTags } from '../utils/textUtils';
 
 const PostList = () => {
   const { t, i18n } = useTranslation();
@@ -50,8 +51,8 @@ const PostList = () => {
             </Link>
             <p className="card-text">
               {post.content && typeof post.content[selectedLanguage] === 'string' 
-                ? post.content[selectedLanguage].substring(0, 150) 
-                : post.content?.en?.substring(0, 150) || 'No content available'}
+                ? stripHtmlTags(post.content[selectedLanguage]).substring(0, 150) 
+                : stripHtmlTags(post.content?.en)?.substring(0, 150) || 'No content available'}
               ...
             </p>
             <Link 
