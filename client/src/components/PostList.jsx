@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { stripHtmlTags } from '../utils/textUtils';
+import '../stylings/PostList.scss';
 
 const PostList = () => {
   const { t, i18n } = useTranslation();
@@ -41,26 +42,28 @@ const PostList = () => {
               }} 
             />
           )}
-          <div className="card-body">
-            <Link to={`/blog/${post._id}`} className="text-decoration-none">
-              <h2 className="card-title">
-                {post.title && typeof post.title[selectedLanguage] === 'string' 
-                  ? post.title[selectedLanguage] 
-                  : post.title?.en || 'Untitled Post'}
-              </h2>
-            </Link>
-            <p className="card-text">
-              {post.content && typeof post.content[selectedLanguage] === 'string' 
-                ? stripHtmlTags(post.content[selectedLanguage]).substring(0, 150) 
-                : stripHtmlTags(post.content?.en)?.substring(0, 150) || 'No content available'}
-              ...
-            </p>
-            <Link 
-              to={`/blog/${post._id}`} 
-              className="btn btn-secondary btn-sm"
-            >
-              {t('read_more')}
-            </Link>
+          <div className="arrow">
+            <div className="card-body">
+              <Link to={`/blog/${post._id}`} className="text-decoration-none">
+                <h2 className="card-title">
+                  {post.title && typeof post.title[selectedLanguage] === 'string' 
+                    ? post.title[selectedLanguage] 
+                    : post.title?.en || 'Untitled Post'}
+                </h2>
+              </Link>
+              <p className="card-text">
+                {post.content && typeof post.content[selectedLanguage] === 'string' 
+                  ? stripHtmlTags(post.content[selectedLanguage]).substring(0, 150) 
+                  : stripHtmlTags(post.content?.en)?.substring(0, 150) || 'No content available'}
+                ...
+              </p>
+              <Link 
+                to={`/blog/${post._id}`} 
+                className="btn btn-secondary btn-sm"
+              >
+                {t('read_more')}
+              </Link>
+            </div>
           </div>
         </div>
       ))}

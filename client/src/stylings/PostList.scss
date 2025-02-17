@@ -1,0 +1,21 @@
+.arrow {
+    background-color: #000;
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 10% 100%, 0% 50%);
+    width: 100vw;
+    position: relative;
+    right: 0;
+}
+
+.card {
+    --bs-card-border-width: 0;
+}
+.card-body {
+    color: #fff;
+    background-color: #000;
+    margin-left: 5rem;
+    border:#000 solid 0;
+
+    a {
+        color: #fff;
+    }
+}
