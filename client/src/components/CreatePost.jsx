@@ -116,7 +116,7 @@ const CreatePost = () => {
                 </div>
 
                 {/* Title and Content Fields for Each Language */}
-                {['en', 'fr', 'ja', 'eo'].map((lang) => (
+                {['en', 'fr', 'ja', 'eo', 'es'].map((lang) => (
                     <div key={lang} className="mb-4">
                         <h4>Title ({lang.toUpperCase()}):</h4>
                         <input
