@@ -6,10 +6,18 @@ const authMiddleware = require('../middleware/authMiddleware');
 // Get all posts (public route)
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().sort({ date: -1 });
+        if (!posts) {
+            return res.status(404).json({ message: 'No posts found' });
+        }
+        console.log('Posts retrieved successfully:', posts.length);
         res.json(posts);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error('Error fetching posts:', err);
+        res.status(500).json({ 
+            message: 'Error fetching posts',
+            error: process.env.NODE_ENV === 'development' ? err.message : undefined
+        });
     }
 });
 

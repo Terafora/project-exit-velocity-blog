@@ -9,26 +9,53 @@ const PostList = () => {
   const { t, i18n } = useTranslation();
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-  const selectedLanguage = i18n.language || 'en'; // Use 'en' as a default fallback
+  const [isLoading, setIsLoading] = useState(true);
+  const selectedLanguage = i18n.language || 'en';
 
   useEffect(() => {
-    api.get('/api/posts')
-      .then(response => {
-        console.log("Fetched posts:", response.data); // Debugging log
-        setPosts(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-        setError('Failed to load posts.');
-      });
+    const fetchPosts = async () => {
+      try {
+        const response = await api.get('/api/posts');
+        console.log("API Response:", response); // Full response logging
+        
+        if (!response.data || !Array.isArray(response.data)) {
+          console.error("Invalid data format:", response.data);
+          throw new Error('Invalid data format received from server');
+        }
+
+        // Sort posts in reverse chronological order
+        const sortedPosts = [...response.data].sort((a, b) => 
+          new Date(b.date) - new Date(a.date)
+        );
+        setPosts(sortedPosts);
+        setError(null);
+      } catch (error) {
+        console.error("Error details:", error);
+        setError(error.response?.data?.message || 'Failed to load posts.');
+        setPosts([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="container my-4">
+        <h1>{t('blog_posts')}</h1>
+        <p>Loading posts...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container my-4">
       <h1>{t('blog_posts')}</h1>
-      {error && <p>{error}</p>}
-      {posts.length === 0 && <p>No posts available.</p>}
-      {posts.map(post => (
+      {error && <p className="alert alert-danger">{error}</p>}
+      {!error && posts.length === 0 && <p>No posts available.</p>}
+      {!error && Array.isArray(posts) && posts.map(post => (
         <div key={post._id} className="card mb-4">
           {post.imageURL && (
             <img 

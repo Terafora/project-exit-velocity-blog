@@ -12,10 +12,21 @@ const app = express();
 
 // Enable CORS with specific configuration
 app.use(cors({
-    origin: [process.env.CLIENT_URL,'http://localhost:3000'],
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    origin: [process.env.CLIENT_URL, 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200
 }));
+
+// Add error handling middleware
+app.use((err, req, res, next) => {
+    console.error('Server Error:', err);
+    res.status(500).json({ 
+        message: 'Internal Server Error',
+        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
+});
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
