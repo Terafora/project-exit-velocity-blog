@@ -12,7 +12,7 @@ const app = express();
 
 // Enable CORS with specific configuration
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: [process.env.CLIENT_URL,'http://localhost:3000'],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
