@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from 'axios';  // Keep for Cloudinary
+import api from '../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditPost = () => {
@@ -19,7 +20,7 @@ const EditPost = () => {
 
     const fetchPost = async () => {
         try {
-            const response = await axios.get(`/api/posts/${postId}`);
+            const response = await api.get(`/api/posts/${postId}`);
             const { title, content, author, tags, imageURL } = response.data;
             setFormData({
                 title: title || { en: '', fr: '', ja: '', eo: '', es: '' },
@@ -59,8 +60,6 @@ const EditPost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');
-
         const updatedPostData = {
             ...formData,
             tags: formData.tags.split(',').map(tag => tag.trim()),
@@ -68,9 +67,7 @@ const EditPost = () => {
         };
 
         try {
-            await axios.patch(`/api/updates/${postId}`, updatedPostData, {
-                headers: { Authorization: token }
-            });
+            await api.patch(`/api/updates/${postId}`, updatedPostData);
             alert('Post updated successfully');
             navigate('/dashboard');
         } catch (error) {
@@ -116,7 +113,7 @@ const EditPost = () => {
                 </div>
 
                 {/* Title and Content Fields for Each Language */}
-                {['en', 'fr', 'ja', 'eo'].map((lang) => (
+                {['en', 'fr', 'ja', 'eo', 'es'].map((lang) => (
                     <div key={lang} className="mb-4">
                         <h4>Title ({lang.toUpperCase()}):</h4>
                         <input

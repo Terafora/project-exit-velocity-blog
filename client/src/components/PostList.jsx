@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { stripHtmlTags } from '../utils/textUtils';
@@ -12,7 +12,7 @@ const PostList = () => {
   const selectedLanguage = i18n.language || 'en'; // Use 'en' as a default fallback
 
   useEffect(() => {
-    axios.get('/api/posts')
+    api.get('/api/posts')
       .then(response => {
         console.log("Fetched posts:", response.data); // Debugging log
         setPosts(response.data);

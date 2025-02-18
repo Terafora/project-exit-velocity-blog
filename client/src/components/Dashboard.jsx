@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     const fetchPosts = async () => {
         try {
-            const response = await axios.get('/api/posts');
+            const response = await api.get('/api/posts');
             setPosts(response.data);
             console.log("Posts fetched:", response.data); // Debugging log
         } catch (error) {
@@ -31,11 +31,8 @@ const Dashboard = () => {
     };
 
     const handleDeletePost = async (postId) => {
-        const token = localStorage.getItem('token');
         try {
-            await axios.delete(`/api/delete/${postId}`, {
-                headers: { Authorization: token }
-            });
+            await api.delete(`/api/delete/${postId}`);
             fetchPosts(); // Refresh the list of posts after deletion
         } catch (error) {
             console.error("Error deleting post:", error);

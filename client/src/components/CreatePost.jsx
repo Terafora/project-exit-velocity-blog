@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios';  // Keep for Cloudinary
+import api from '../utils/api';
 
 const CreatePost = () => {
     const [formData, setFormData] = useState({
@@ -44,8 +45,6 @@ const CreatePost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token');
-
         const postData = {
             ...formData,
             tags: formData.tags.split(',').map(tag => tag.trim()),
@@ -54,7 +53,7 @@ const CreatePost = () => {
 
         console.log("Post data being prepared for submission:", postData); // Log data structure
 
-        const requiredLanguages = ['en', 'fr', 'ja', 'eo'];
+        const requiredLanguages = ['en', 'fr', 'ja', 'eo', 'es'];
         const missingFields = requiredLanguages.filter(lang => 
             !postData.title[lang] || !postData.content[lang]
         );
@@ -65,9 +64,7 @@ const CreatePost = () => {
         }
 
         try {
-            await axios.post('/api/posts', postData, {
-                headers: { Authorization: token }
-            });
+            await api.post('/api/posts', postData);
             alert('Post created successfully');
             setError(null); // Clear previous errors on success
         } catch (error) {

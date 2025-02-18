@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../stylings/PostDetails.scss';
@@ -14,7 +14,7 @@ const PostDetails = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axios.get(`/api/posts/${postId}`);
+                const response = await api.get(`/api/posts/${postId}`);
                 console.log("Fetched post details:", response.data); // Debugging log
                 setPost(response.data);
             } catch (err) {
