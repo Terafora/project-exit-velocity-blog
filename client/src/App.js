@@ -12,6 +12,7 @@ import MobileNavbar from './components/MobileNavbar';
 import InfoBar from './components/InfoBar';
 import PostDetails from './components/PostDetails';
 import Contact from './components/Contact';
+import MovingCircles from './components/MovingCircles';
 import 'react-quill/dist/quill.snow.css';
 import './App.scss';
 import './i18n';
@@ -33,6 +34,7 @@ function App() {
   return (
     <Router>
       <div className="app-container">
+        <MovingCircles />
         <Navbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} />
         <MobileNavbar changeLanguage={changeLanguage} updateInfoBarText={updateInfoBarText} />
         <div className="content-wrapper">

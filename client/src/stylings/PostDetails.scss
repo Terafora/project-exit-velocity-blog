@@ -1,3 +1,92 @@
+$sawtooth-top: polygon(
+  0 20px, 2.5% 0, 5% 20px, 7.5% 0, 10% 20px, 12.5% 0, 15% 20px, 17.5% 0, 
+  20% 20px, 22.5% 0, 25% 20px, 27.5% 0, 30% 20px, 32.5% 0, 35% 20px, 37.5% 0,
+  40% 20px, 42.5% 0, 45% 20px, 47.5% 0, 50% 20px, 52.5% 0, 55% 20px, 57.5% 0,
+  60% 20px, 62.5% 0, 65% 20px, 67.5% 0, 70% 20px, 72.5% 0, 75% 20px, 77.5% 0,
+  80% 20px, 82.5% 0, 85% 20px, 87.5% 0, 90% 20px, 92.5% 0, 95% 20px, 97.5% 0, 100% 20px,
+  100% 100%, 0 100%
+);
+
+$sawtooth-bottom: polygon(
+  0 0, 100% 0,
+  100% calc(100% - 20px), 97.5% 100%, 95% calc(100% - 20px), 92.5% 100%, 90% calc(100% - 20px), 
+  87.5% 100%, 85% calc(100% - 20px), 82.5% 100%, 80% calc(100% - 20px), 77.5% 100%, 
+  75% calc(100% - 20px), 72.5% 100%, 70% calc(100% - 20px), 67.5% 100%, 65% calc(100% - 20px), 
+  62.5% 100%, 60% calc(100% - 20px), 57.5% 100%, 55% calc(100% - 20px), 52.5% 100%, 
+  50% calc(100% - 20px), 47.5% 100%, 45% calc(100% - 20px), 42.5% 100%, 40% calc(100% - 20px), 
+  37.5% 100%, 35% calc(100% - 20px), 32.5% 100%, 30% calc(100% - 20px), 27.5% 100%, 
+  25% calc(100% - 20px), 22.5% 100%, 20% calc(100% - 20px), 17.5% 100%, 15% calc(100% - 20px), 
+  12.5% 100%, 10% calc(100% - 20px), 7.5% 100%, 5% calc(100% - 20px), 2.5% 100%, 0 calc(100% - 20px)
+);
+
 .post-details {
-    margin-bottom: 4rem;
+  position: relative;
+  background: #000;
+  color: #fff;
+  padding: 3rem;
+  margin: 3rem auto;
+  padding-bottom: 4rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: #000;
+    clip-path: $sawtooth-top;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; // Position it below the container
+    left: 0;
+    right: 0;
+    height: 20px; // Match the height of the teeth
+    background: #000;
+    clip-path: $sawtooth-bottom;
+    z-index: 1; // Ensure it's visible
+  }
+
+  h1, p, .post-content {
+    color: #fff;
+  }
+
+  a {
+    color: #20B2AA;
+    &:hover {
+      color: lighten(#20B2AA, 10%);
+    }
+  }
+
+  .badge {
+    background-color: #20B2AA;
+  }
+
+  hr {
+    border-color: #fff;
+  }
+
+  .btn-outline-primary {
+    color: #20B2AA;
+    border-color: #20B2AA;
+    &:hover {
+      background-color: #20B2AA;
+      color: #000;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+}
+
+.post-border {
+    border: 0.5em solid #fff;
+    border-radius: 1.5em;
+    padding: 1em;
 }

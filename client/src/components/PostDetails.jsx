@@ -41,8 +41,9 @@ const PostDetails = () => {
                 ← {t('back')}
             </button>
             <div className="post-details">
+                <div className="post-border">
                 {post.imageURL && (
-                    <img src={post.imageURL} alt="Post" className="img-fluid mb-4" style={{ maxWidth: '100%' }} />
+                    <img src={post.imageURL} alt="Post" className="img-fluid" />
                 )}
                 <h1>{post.title[selectedLanguage] || post.title.en}</h1>
                 <p><strong>{t('author')}:</strong> {post.author}</p>
@@ -51,9 +52,9 @@ const PostDetails = () => {
                     month: 'long',
                     day: 'numeric'
                 })}</p>
+                <hr></hr>
                 <div
-                    className="post-content border p-3"
-                    style={{ backgroundColor: '#f8f9fa' }}
+                    className="post-content"
                     dangerouslySetInnerHTML={{ __html: post.content[selectedLanguage] || post.content.en }}
                 />
                 <p>
@@ -89,6 +90,7 @@ const PostDetails = () => {
                         >
                             {t('email-share')}
                         </a>
+                    </div>
                     </div>
                 </div>
             </div>

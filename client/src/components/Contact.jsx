@@ -8,6 +8,7 @@ const Contact = () => {
     return (
         <div className="contact-container">
             <div className="contact-content">
+            <div className="contact-border">
                 <h1>{t('contact')}</h1>
                 <div className="contact-info">
                     <div className="contact-section">
@@ -28,6 +29,7 @@ const Contact = () => {
                         </ul>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );
