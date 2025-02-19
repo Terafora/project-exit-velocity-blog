@@ -12,49 +12,66 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: function (origin, callback) {
-        const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:3000'];
+    origin: function(origin, callback) {
         // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        if (!origin) {
+            return callback(null, true);
+        }
+
+        // Remove trailing slash from origin for comparison
+        const normalizedOrigin = origin.replace(/\/$/, '');
+        
+        // Get allowed origins
+        const allowedOrigins = [
+            process.env.CLIENT_URL?.replace(/\/$/, ''),
+            'http://localhost:3000',
+            'http://localhost:5000'
+        ].filter(Boolean); // Remove any undefined values
+
+        if (allowedOrigins.includes(normalizedOrigin)) {
             callback(null, true);
         } else {
-            console.log('Blocked origin:', origin);
+            console.error(`Blocked request from origin: ${origin}`);
+            console.error('Allowed origins:', allowedOrigins);
             callback(new Error('Not allowed by CORS'));
         }
     },
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200,
-    maxAge: 3600 // Cache preflight request for 1 hour
+    optionsSuccessStatus: 200
 };
 
-// Enable CORS with configuration
+// Apply CORS middleware
 app.use(cors(corsOptions));
 
-// Handle CORS errors
+// Handle CORS preflight
+app.options('*', cors(corsOptions));
+
+// Global error handler
 app.use((err, req, res, next) => {
+    // Log detailed error information
+    console.error('Server Error:', {
+        message: err.message,
+        path: req.path,
+        origin: req.headers.origin,
+        stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
+
+    // Handle CORS errors specifically
     if (err.message === 'Not allowed by CORS') {
-        console.error('CORS Error:', {
-            origin: req.headers.origin,
-            method: req.method,
-            path: req.path
-        });
-        res.status(403).json({
+        return res.status(403).json({
             message: 'CORS Error: Origin not allowed',
-            error: process.env.NODE_ENV === 'development' ? err.message : undefined
-        });
-    } else {
-        console.error('Server Error:', err);
-        res.status(500).json({
-            message: 'Internal Server Error',
-            error: process.env.NODE_ENV === 'development' ? err.message : undefined
+            origin: req.headers.origin
         });
     }
-});
 
-// Add OPTIONS handling for preflight requests
-app.options('*', cors(corsOptions));
+    // Handle other errors
+    res.status(err.status || 500).json({
+        message: err.message || 'Internal Server Error',
+        error: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
+});
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
