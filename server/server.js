@@ -10,23 +10,51 @@ const deleteRoute = require('./routes/deleteRoute'); // Add this line
 
 const app = express();
 
-// Enable CORS with specific configuration
-app.use(cors({
-    origin: [process.env.CLIENT_URL, 'http://localhost:3000'],
+// CORS configuration
+const corsOptions = {
+    origin: function (origin, callback) {
+        const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:3000'];
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            console.log('Blocked origin:', origin);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    optionsSuccessStatus: 200
-}));
+    optionsSuccessStatus: 200,
+    maxAge: 3600 // Cache preflight request for 1 hour
+};
 
-// Add error handling middleware
+// Enable CORS with configuration
+app.use(cors(corsOptions));
+
+// Handle CORS errors
 app.use((err, req, res, next) => {
-    console.error('Server Error:', err);
-    res.status(500).json({ 
-        message: 'Internal Server Error',
-        error: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
+    if (err.message === 'Not allowed by CORS') {
+        console.error('CORS Error:', {
+            origin: req.headers.origin,
+            method: req.method,
+            path: req.path
+        });
+        res.status(403).json({
+            message: 'CORS Error: Origin not allowed',
+            error: process.env.NODE_ENV === 'development' ? err.message : undefined
+        });
+    } else {
+        console.error('Server Error:', err);
+        res.status(500).json({
+            message: 'Internal Server Error',
+            error: process.env.NODE_ENV === 'development' ? err.message : undefined
+        });
+    }
 });
+
+// Add OPTIONS handling for preflight requests
+app.options('*', cors(corsOptions));
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
