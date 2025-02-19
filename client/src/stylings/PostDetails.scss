@@ -90,3 +90,10 @@ $sawtooth-bottom: polygon(
     border-radius: 1.5em;
     padding: 1em;
 }
+
+@media screen and (max-width: 768px) {
+  .post-border {
+    border: none;
+    padding: 0
+  }
+}

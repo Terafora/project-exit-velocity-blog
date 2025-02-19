@@ -6,15 +6,9 @@ const MovingCircles = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
-
-        // Set canvas size
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
+        
+        // Declare circles array at the top
+        let circles = [];
 
         const colors = [
             "rgba(32, 178, 170, 0.7)",
@@ -22,16 +16,33 @@ const MovingCircles = () => {
             "rgba(199, 21, 133, 0.7)",
             "rgba(30, 144, 255, 0.7)"
         ];
-        let circles = [];
+
+        // Set canvas size and check window width
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Now circles is defined before we use it
+            circles.forEach(circle => {
+                circle.speed = window.innerWidth <= 768 ? circle.originalSpeed / 2 : circle.originalSpeed;
+            });
+        };
+
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
 
         const createCircle = () => {
-            const radius = Math.random() * 180 + 10; // Size range
-            const x = canvas.width + radius; // Start off-screen to the right
-            const y = Math.random() * canvas.height;
-            const speed = Math.random() * 5 + 3; // Speed range
-            const color = colors[Math.floor(Math.random() * colors.length)];
+            const originalSpeed = Math.random() * 5 + 3; // Store original speed
+            const radius = Math.random() * 180 + 10;  // Define radius first
+            const circle = {
+                radius: radius,  // Now we can use radius
+                x: canvas.width + radius,
+                y: Math.random() * canvas.height,
+                originalSpeed: originalSpeed,
+                speed: window.innerWidth <= 768 ? originalSpeed / 2 : originalSpeed,
+                color: colors[Math.floor(Math.random() * colors.length)]
+            };
 
-            circles.push({ x, y, radius, speed, color });
+            circles.push(circle);
         };
 
         const animate = () => {
