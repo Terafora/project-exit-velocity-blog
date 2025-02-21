@@ -23,7 +23,8 @@
     
     &:hover {
         margin-bottom: 140px; // Adjust this value based on your preview content height
-        
+        z-index: 1000;
+
         .preview-content {
             opacity: 1;
             transform: translateY(0);
