@@ -7,11 +7,11 @@
     "read_more": "Read More",
     "language": "Languages",
     "infobar": {
-    "home": "Welcome to the site! Check out our latest blog posts and tutorials.",
-    "about": "Learn more about us and our mission.",
-    "blog": "Check out the latest blog posts!",
-    "contact": "Get in touch with us for more info.",
-    "default": "Welcome to the site! Check out our latest blog posts and tutorials."
+        "home": "Welcome to the site! Check out our latest blog posts and tutorials.",
+        "about": "Learn more about us and our mission.",
+        "blog": "Check out the latest blog posts!",
+        "contact": "Get in touch with us for more info.",
+        "default": "Welcome to the site! Check out our latest blog posts and tutorials."
     },
     "email-share": "Share via email",
     "facebook-share": "Share on Facebook",
@@ -20,6 +20,23 @@
     "author": "Author",
     "tags": "Tags",
     "views": "Views",
-    "back": "Back"
+    "back": "Back",
+    "about_page": {
+        "title": "About",
+        "image_alt": "About Me Image",
+        "sections": {
+            "who": {
+                "title": "Who I Am",
+                "content": "I'm a developer, translator and a former teacher with an interest in making things that are helpful to others and what I personally find to be kinda cool. I enjoy learning new things and sharing what I know with others."
+            },
+            "what": {
+                "title": "What I Do",
+                "content": "I specialize in full-stack development, crafting responsive web applications which make the internet fun again. I'm interested in expanding into 3D and XR site development as well as game development."
+            },
+            "vision": {
+                "title": "My Vision",
+                "content": "I believe in building technology that makes a positive impact. Whether that be through making something practical and useful, or something that brings joy and wonder to others."
+            }
+        }
+    }
 }
-  

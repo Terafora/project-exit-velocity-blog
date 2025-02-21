@@ -20,5 +20,24 @@
     "author": "Autor",
     "tags": "Etiquetas",
     "views": "Vistas",
-    "back": "Volver"
+    "back": "Volver",
+    "about_page": {
+    "title": "Acerca de",
+    "image_alt": "Imagen sobre mí",
+    "sections": {
+        "who": {
+            "title": "Quién Soy",
+            "content": "Soy desarrollador, traductor y exprofesor con interés en crear cosas que sean útiles para otros y que personalmente encuentro bastante interesantes. Disfruto aprender cosas nuevas y compartir lo que sé con los demás."
+        },
+        "what": {
+            "title": "Lo Que Hago",
+            "content": "Me especializo en desarrollo full-stack, creando aplicaciones web responsivas que hacen que Internet sea divertido nuevamente. Estoy interesado en expandirme hacia el desarrollo de sitios en 3D y XR, así como en el desarrollo de juegos."
+        },
+        "vision": {
+            "title": "Mi Visión",
+            "content": "Creo en construir tecnología que tenga un impacto positivo. Ya sea creando algo práctico y útil, o algo que traiga alegría y asombro a otros."
+        }
+    }
+}
+
 }

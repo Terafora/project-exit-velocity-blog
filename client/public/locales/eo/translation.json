@@ -20,5 +20,24 @@
     "author": "Aŭtoro",
     "tags": "Etikedoj",
     "views": "Vidoj",
-    "back": "Reen"
+    "back": "Reen",
+    "about_page": {
+    "title": "Pri",
+    "image_alt": "Bildo Pri Mi",
+    "sections": {
+        "who": {
+            "title": "Kiu Mi Estas",
+            "content": "Mi estas programisto, tradukisto kaj iama instruisto kun intereso fari aĵojn, kiuj estas helpemaj al aliaj kaj kion mi persone trovas sufiĉe cool. Mi ĝojas lerni novajn aĵojn kaj dividi tion, kion mi scias kun aliaj."
+        },
+        "what": {
+            "title": "Kion Mi Faras",
+            "content": "Mi specialiĝas en plenstaka disvolviĝo, kreante respondemajn retaplikojn, kiuj religas la interreton denove amuza. Mi interesiĝas pri vastiĝo en 3D kaj XR ejo-disvolviĝo same kiel luddisvolviĝo."
+        },
+        "vision": {
+            "title": "Mia Vizio",
+            "content": "Mi kredas je konstruado de teknologio, kiu havas pozitivan efikon. Ĉu per fari ion praktikeman kaj utilan, aŭ ion, kiu alportas ĝojon kaj miron al aliaj."
+        }
+    }
+}
+
 }

@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import InfoBar from './components/InfoBar';
+import About from './components/About';
 import PostDetails from './components/PostDetails';
 import Contact from './components/Contact';
 import MovingCircles from './components/MovingCircles';
@@ -41,6 +42,7 @@ function App() {
           <Routes>
             {/* Home Route */}
   <         Route path="/" element={<Home />} />
+  <         Route path="/about" element={<About />} />
   
             {/* Blog Routes */}
             <Route path="/blog" element={<PostList />} />

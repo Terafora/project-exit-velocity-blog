@@ -91,6 +91,14 @@ $sawtooth-bottom: polygon(
     padding: 1em;
 }
 
+img {
+    max-width: 650px!important;
+    height: auto;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 @media screen and (max-width: 768px) {
   .post-border {
     border: none;
