@@ -79,9 +79,11 @@ $sawtooth-bottom: polygon(
   }
 
   img {
-    max-width: 100%;
+    max-width: min(100%, 650px);
     height: auto;
-    margin-bottom: 2rem;
+    display: block;
+    margin: 0 auto 2rem;
+    border-radius: 10px;
   }
 }
 
@@ -91,17 +93,14 @@ $sawtooth-bottom: polygon(
     padding: 1em;
 }
 
-img {
-    max-width: 650px!important;
-    height: auto;
-    border-radius: 10px;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 @media screen and (max-width: 768px) {
   .post-border {
     border: none;
     padding: 0
+  }
+
+  img {
+    max-width: 100%;
   }
 }
