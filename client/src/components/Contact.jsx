@@ -13,7 +13,7 @@ const Contact = () => {
                 <div className="contact-info">
                     <div className="contact-section">
                         <h2>Email</h2>
-                        <p>charlotte.stone649@gmail.com</p>
+                        <p>Temporarily hidden</p>
                     </div>
                     <div className="contact-section">
                         <h2>Socials</h2>
