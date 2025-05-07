@@ -19,12 +19,7 @@ const Contact = () => {
                         <h2>Socials</h2>
                         <ul className="social-links">
                             <li>
-                                <a href="https://www.linkedin.com/in/charlotte-stone-web/" target="_blank" rel="noopener noreferrer">
-                                    LinkedIn: Charlotte Stone
-                                </a><br></br>
-                                <a href="https://github.com/Terafora" target="_blank" rel="noopener noreferrer">
-                                    Github: Terafora
-                                </a>
+                                <p>Updating Soon</p>
                             </li>
                         </ul>
                     </div>
