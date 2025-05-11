@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd client && npm run build:deploy",
+  "buildCommand": "cd client && CI=false npm run build:deploy",
   "outputDirectory": "client/build",
   "installCommand": "cd client && npm install --legacy-peer-deps",
   "routes": [

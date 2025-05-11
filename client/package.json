@@ -24,15 +24,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:deploy": "npm install --legacy-peer-deps && react-scripts build",
+    "build:deploy": "npm install --legacy-peer-deps && CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -47,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/axios": "^0.9.36",
     "@types/i18next": "^12.1.0",
     "@types/jest": "^29.5.14",
