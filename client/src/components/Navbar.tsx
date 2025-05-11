@@ -3,12 +3,25 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../stylings/Navbar.scss';
 
-const Navbar = ({ changeLanguage, updateInfoBarText }) => {
+interface NavbarProps {
+    changeLanguage: (lang: string) => void;
+    updateInfoBarText: (text: string) => void;
+}
+
+interface RouteColors {
+    [key: string]: string;
+}
+
+interface RouteTextKeys {
+    [key: string]: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ changeLanguage, updateInfoBarText }) => {
     const { t, i18n } = useTranslation(); 
     const location = useLocation();
 
     // Define colors for each route
-    const routeColors = {
+    const routeColors: RouteColors = {
         '/': '#20B2AA', // Home page color
         '/about': '#FFD700', // About page color
         '/blog': '#C71585', // Blog page color
@@ -16,7 +29,7 @@ const Navbar = ({ changeLanguage, updateInfoBarText }) => {
     };
 
     // Define i18n translation keys for each route
-    const routeTextKeys = {
+    const routeTextKeys: RouteTextKeys = {
         '/': 'infobar.home',
         '/about': 'infobar.about',
         '/blog': 'infobar.blog',

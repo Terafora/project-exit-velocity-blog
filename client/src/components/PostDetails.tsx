@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Post } from '../types';
 import '../stylings/PostDetails.scss';
 
-const PostDetails = () => {
-    const { postId } = useParams();
+const PostDetails: React.FC = () => {
+    const { postId } = useParams<{ postId: string }>();
     const navigate = useNavigate();
-    const { t, i18n } = useTranslation(); // Add t for translation
-    const [post, setPost] = useState(null);
-    const [error, setError] = useState(null);
+    const { t, i18n } = useTranslation();
+    const [post, setPost] = useState<Post | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchPost = async () => {
+        const fetchPost = async (): Promise<void> => {
             try {
-                const response = await api.get(`/api/posts/${postId}`);
+                if (!postId) return;
+                const response = await api.get<Post>(`/api/posts/${postId}`);
                 console.log("Fetched post details:", response.data); // Debugging log
                 setPost(response.data);
             } catch (err) {
@@ -28,7 +30,7 @@ const PostDetails = () => {
     if (error) return <div className="alert alert-danger">{error}</div>;
     if (!post) return <div>Loading...</div>;
 
-    const selectedLanguage = i18n.language;
+    const selectedLanguage = i18n.language || 'en';
     console.log("Current selected language in PostDetails:", selectedLanguage); // Debugging log
 
     return (
@@ -46,27 +48,31 @@ const PostDetails = () => {
                     <img src={post.imageURL} alt="Post" className="img-fluid" />
                 )}
                 <h1>{post.title[selectedLanguage] || post.title.en}</h1>
-                <p><strong>{t('author')}:</strong> {post.author}</p>
-                <p><strong>{t('posted')}:</strong> {new Date(post.date).toLocaleDateString(selectedLanguage, {
+                {post.author && <p><strong>{t('author')}:</strong> {post.author}</p>}
+                {post.date && <p><strong>{t('posted')}:</strong> {new Date(post.date).toLocaleDateString(selectedLanguage, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
-                })}</p>
+                })}</p>}
                 <hr></hr>
                 <div
                     className="post-content"
                     dangerouslySetInnerHTML={{ __html: post.content[selectedLanguage] || post.content.en }}
                 />
-                <p>
-                    <strong>{t('tags')}:</strong> {post.tags.map((tag, index) => (
-                        <span key={index} className="badge bg-secondary mx-1">{tag}</span>
-                    ))}
-                </p>
+                {post.tags && post.tags.length > 0 && (
+                    <p>
+                        <strong>{t('tags')}:</strong> {post.tags.map((tag, index) => (
+                            <span key={index} className="badge bg-secondary mx-1">{tag}</span>
+                        ))}
+                    </p>
+                )}
                 <hr className="my-4" />
                 <div className="d-flex justify-content-between align-items-center">
-                    <p className="mb-0">
-                        👁️ {post.views} {t('views')}
-                    </p>
+                    {post.views !== undefined && (
+                        <p className="mb-0">
+                            👁️ {post.views} {t('views')}
+                        </p>
+                    )}
                     <div className="share-buttons">
                         <a
                             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}

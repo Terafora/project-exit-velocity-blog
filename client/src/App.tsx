@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
+// Import TypeScript components
 import Home from './components/Home';
 import PostList from './components/PostList';
 import CreatePost from './components/CreatePost';
@@ -18,17 +19,17 @@ import 'react-quill/dist/quill.snow.css';
 import './App.scss';
 import './i18n';
 
-function App() {
+const App: React.FC = () => {
   const { i18n } = useTranslation();
-  const [infobarText, setInfobarText] = useState('Welcome to the site! Check out our latest blog posts and tutorials.');
+  const [infobarText, setInfobarText] = useState<string>('Welcome to the site! Check out our latest blog posts and tutorials.');
 
   const token = localStorage.getItem('token');
 
-  const changeLanguage = (lng) => {
+  const changeLanguage = (lng: string): void => {
     i18n.changeLanguage(lng);
   };
 
-  const updateInfoBarText = (text) => {
+  const updateInfoBarText = (text: string): void => {
     setInfobarText(text);
   };
 
@@ -41,8 +42,8 @@ function App() {
         <div className="content-wrapper">
           <Routes>
             {/* Home Route */}
-  <         Route path="/" element={<Home />} />
-  <         Route path="/about" element={<About />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
   
             {/* Blog Routes */}
             <Route path="/blog" element={<PostList />} />
@@ -60,6 +61,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

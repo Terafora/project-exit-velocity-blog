@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+// Define types for axios
+type AxiosConfig = any;
+type AxiosResp = any;
+type AxiosErr = any;
+
 // Get base URL from environment variables
-const getBaseUrl = () => {
+const getBaseUrl = (): string => {
     const url = process.env.REACT_APP_API_URL;
     if (!url) {
         console.warn('REACT_APP_API_URL is not set');
@@ -22,7 +27,7 @@ const api = axios.create({
 
 // Request interceptor
 api.interceptors.request.use(
-    config => {
+    (config: AxiosConfig): AxiosConfig => {
         // Log request details in development
         if (process.env.NODE_ENV === 'development') {
             console.log('API Request:', {
@@ -35,7 +40,7 @@ api.interceptors.request.use(
 
         // Add auth token if available
         const token = localStorage.getItem('token');
-        if (token) {
+        if (token && config.headers) {
             config.headers = {
                 ...config.headers,
                 Authorization: token
@@ -44,7 +49,7 @@ api.interceptors.request.use(
 
         return config;
     },
-    error => {
+    (error: AxiosErr): Promise<AxiosErr> => {
         console.error('Request Error:', error);
         return Promise.reject(error);
     }
@@ -52,7 +57,7 @@ api.interceptors.request.use(
 
 // Response interceptor
 api.interceptors.response.use(
-    response => {
+    (response: AxiosResp): AxiosResp => {
         // Log response in development
         if (process.env.NODE_ENV === 'development') {
             console.log('API Response:', {
@@ -64,7 +69,7 @@ api.interceptors.response.use(
         }
         return response;
     },
-    error => {
+    (error: AxiosErr): Promise<AxiosErr> => {
         // Handle different types of errors
         if (error.response) {
             // Server responded with error status

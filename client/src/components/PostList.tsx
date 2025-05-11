@@ -3,19 +3,20 @@ import api from '../utils/api';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { stripHtmlTags } from '../utils/textUtils';
+import { Post } from '../types';
 import '../stylings/PostList.scss';
 
-const PostList = () => {
+const PostList: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const selectedLanguage = i18n.language || 'en';
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPosts = async (): Promise<void> => {
       try {
-        const response = await api.get('/api/posts');
+        const response = await api.get<Post[]>('/api/posts');
         console.log("API Response:", response); // Full response logging
         
         if (!response.data || !Array.isArray(response.data)) {
@@ -25,11 +26,11 @@ const PostList = () => {
 
         // Sort posts in reverse chronological order
         const sortedPosts = [...response.data].sort((a, b) => 
-          new Date(b.date) - new Date(a.date)
+          new Date(b.date || '').getTime() - new Date(a.date || '').getTime()
         );
         setPosts(sortedPosts);
         setError(null);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error details:", error);
         setError(error.response?.data?.message || 'Failed to load posts.');
         setPosts([]);

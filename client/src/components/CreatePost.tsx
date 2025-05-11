@@ -1,49 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';  // Keep for Cloudinary
 import api from '../utils/api';
+import { LocalizedContent } from '../types';
 
-const CreatePost = () => {
-    const [formData, setFormData] = useState({
-        title: { en: '', fr: '', ja: '', eo: '', es: "" },
-        content: { en: '', fr: '', ja: '', eo: '', es: "" },
+interface FormData {
+    title: LocalizedContent;
+    content: LocalizedContent;
+    author: string;
+    tags: string;
+}
+
+interface CloudinaryResponse {
+    secure_url: string;
+    [key: string]: any;
+}
+
+const CreatePost: React.FC = () => {
+    const [formData, setFormData] = useState<FormData>({
+        title: { en: '', fr: '', ja: '', eo: '', es: '' },
+        content: { en: '', fr: '', ja: '', eo: '', es: '' },
         author: '',
         tags: ''
     });
-    const [imageURL, setImageURL] = useState('');
-    const [error, setError] = useState(null);
+    const [imageURL, setImageURL] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
 
-    const handleChange = (value, lang, field) => {
+    const handleChange = (value: string, lang: string | null, field: keyof FormData): void => {
         setFormData({
             ...formData,
-            [field]: lang ? { ...formData[field], [lang]: value } : value
+            [field]: lang ? { ...formData[field as keyof Pick<FormData, 'title' | 'content'>], [lang]: value } : value
         });
     };
 
-    const handleImageUpload = async (e) => {
-        const file = e.target.files[0];
+    const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+        const file = e.target.files?.[0];
         if (!file) return;
 
         const uploadFormData = new FormData();
         uploadFormData.append('file', file);
-        uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
+        uploadFormData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || '');
 
         try {
             console.log('Uploading with preset:', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET);
             
-            const response = await axios.post(
+            const response = await axios.post<CloudinaryResponse>(
                 `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`,
                 uploadFormData
             );
 
             setImageURL(response.data.secure_url);
             console.log("Upload successful:", response.data);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Upload error:', error.response?.data || error);
             setError("Image upload failed - check console for details");
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         const postData = {
             ...formData,
@@ -67,7 +80,7 @@ const CreatePost = () => {
             await api.post('/api/posts', postData);
             alert('Post created successfully');
             setError(null); // Clear previous errors on success
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error creating post', error);
             setError("Error creating post. Please check your input and try again.");
             console.log("Post creation error details:", error.response?.data); // Log error details
@@ -113,7 +126,7 @@ const CreatePost = () => {
                 </div>
 
                 {/* Title and Content Fields for Each Language */}
-                {['en', 'fr', 'ja', 'eo', 'es'].map((lang) => (
+                {(['en', 'fr', 'ja', 'eo', 'es'] as const).map((lang) => (
                     <div key={lang} className="mb-4">
                         <h4>Title ({lang.toUpperCase()}):</h4>
                         <input
@@ -128,7 +141,7 @@ const CreatePost = () => {
                         <textarea
                             className="form-control"
                             placeholder={`Write HTML content for ${lang.toUpperCase()}`}
-                            rows="5"
+                            rows={5}
                             value={formData.content[lang]}
                             onChange={(e) => handleChange(e.target.value, lang, 'content')}
                         />

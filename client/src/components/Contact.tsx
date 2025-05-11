@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../stylings/Contact.scss';
 
-const Contact = () => {
+const Contact: React.FC = () => {
     const { t } = useTranslation();
 
     return (

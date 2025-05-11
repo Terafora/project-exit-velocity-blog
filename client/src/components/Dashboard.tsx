@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Post } from '../types';
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
     const { i18n } = useTranslation();
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchPosts();
     }, []);
 
-    const fetchPosts = async () => {
+    const fetchPosts = async (): Promise<void> => {
         try {
-            const response = await api.get('/api/posts');
+            const response = await api.get<Post[]>('/api/posts');
             setPosts(response.data);
             console.log("Posts fetched:", response.data); // Debugging log
         } catch (error) {
@@ -22,15 +23,15 @@ const Dashboard = () => {
         }
     };
 
-    const handleCreatePost = () => {
+    const handleCreatePost = (): void => {
         navigate('/create');
     };
 
-    const handleEditPost = (postId) => {
+    const handleEditPost = (postId: string): void => {
         navigate(`/edit/${postId}`);
     };
 
-    const handleDeletePost = async (postId) => {
+    const handleDeletePost = async (postId: string): Promise<void> => {
         try {
             await api.delete(`/api/delete/${postId}`);
             fetchPosts(); // Refresh the list of posts after deletion

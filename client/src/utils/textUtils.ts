@@ -3,7 +3,7 @@
  * @param {string} html - The HTML string to strip tags from
  * @returns {string} The text content without HTML tags
  */
-export const stripHtmlTags = (html) => {
+export const stripHtmlTags = (html: string): string => {
   if (!html) return '';
   
   // Create a temporary div element

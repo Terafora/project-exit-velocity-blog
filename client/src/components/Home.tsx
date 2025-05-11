@@ -1,7 +1,7 @@
 import React from 'react';
 import '../stylings/Home.scss';
 
-const Home = () => {
+const Home: React.FC = () => {
     return (
         <div className="home-container">
             <h1>Project Exit Velocity</h1>
