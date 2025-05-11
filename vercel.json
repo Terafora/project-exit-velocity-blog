@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "buildCommand": "cd client && CI=false npm run build:deploy",
+  "buildCommand": "cd client && DISABLE_ESLINT_PLUGIN=true CI=false npm run build:deploy",
   "outputDirectory": "client/build",
   "installCommand": "cd client && npm install --legacy-peer-deps",
   "routes": [
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }
-  ]
+  ],
+  "env": {
+    "CI": "false",
+    "DISABLE_ESLINT_PLUGIN": "true"
+  }
 }

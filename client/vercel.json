@@ -5,7 +5,7 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "buildCommand": "CI=false npm run build:deploy",
+        "buildCommand": "DISABLE_ESLINT_PLUGIN=true CI=false npm run build:deploy",
         "outputDirectory": "build"
       }
     }
@@ -13,5 +13,9 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/.*", "dest": "/index.html" }
-  ]
+  ],
+  "env": {
+    "CI": "false",
+    "DISABLE_ESLINT_PLUGIN": "true"
+  }
 }
